@@ -26,3 +26,18 @@
 *.exe
 *.out
 *.app
+
+# Visual Studio stuff
+*.sdf
+*.sln
+*.suo
+*.ilk
+*.pdb
+*.vcxproj
+*.filters
+*.log
+*.idb
+*.pdb
+*.tlog
+*.lastbuildstate
+*.opensdf
