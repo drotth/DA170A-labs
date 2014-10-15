@@ -68,12 +68,12 @@ public:
 		return int (P / Q);
 	};
 
-	friend std::ostream& operator<< (std::ostream & cout, Rational<Tint> R){
+	friend std::ostream& operator<< (std::ostream &cout, Rational<Tint> R){
 		cout << R.P << '/' << R.Q;
 		return cout;
 	}
 
-	friend std::istream& operator>> (std::istream & cin, Rational<Tint> & R){
+	friend std::istream& operator>> (std::istream &cin, Rational<Tint> & R){
 		cin >> R.P;
 		cout << '/';
 		cin >> R.Q;
