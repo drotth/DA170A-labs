@@ -26,10 +26,10 @@ public:
 		return cout;
 	}
 
-	friend std::istream& operator>> (std::istream & cin, Rational<Tint> R){
-		R.P = cin.get();
-		cin.get();
-		R.Q = cin.get();
+	friend std::istream& operator>> (std::istream & cin, Rational<Tint> & R){
+		cin >> R.P;
+		cout << '/';
+		cin >> R.Q;
 		return cin;
 	}
 
@@ -63,20 +63,28 @@ public:
 		return *this;
 	}
 
-	Rational operator-(const Rational rhs) const {
-
-		Tint g = GCD(Q, rhs.Q);
-		Tint tempQ = Q/g;
-		Tint tempP = P * (rhs.Q / g) - rhs.P * tempQ;
-		
-		g = GCD(tempP, g);
-		tempP = tempP/g;
-		tempQ = tempQ * (rhs.Q / g);
-		return Rational(tempP, tempQ);
+	Rational operator-() {
+		return Rational(-P,Q);
 	}
 
-	//Rational operator++() const {
-	//	Tint P = P + Q;
-	//	Reduce(P, Q);
-	//}
+	/*
+	* Used as ++Rational
+	*/
+	Rational operator++() {
+		P += Q;
+		return *this;
+	}
+
+	/*
+	* Used as Rational++
+	*/
+	Rational operator++(int) {
+		Rational tempRat = *this;
+		P += Q;
+		return tempRat;
+	}
+
+	explicit operator int() const {
+		return int(P / Q);
+	};
 };

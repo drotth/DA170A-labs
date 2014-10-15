@@ -46,34 +46,29 @@ void TestFörGodkänt() {
 
 	//+  dvs. (rtal + tal)
 	rs3=Rshort(13,3);
-	assert(rs3+rll2==Rshort(19,3));
-	assert(rs3+2==Rshort(19,3));
+	assert(rs3+rll2 == Rshort(19,3));
+	assert(rs3+2 == Rshort(19,3));
 
-	//-  dvs: (rtal - rtal)	OBS: Inte en del av labben
-	assert(rs3 - rs2 == Rshort(7,3));
-
-	////unärt ”–” dvs. rtal1 = -rtal2;
-	//assert( (rs0=-rs1)==Rshort(-1));
+	//unärt ”–” dvs. rtal1 = -rtal2;
+	assert((rs0 = -1) == -1);
+	assert((rs0=-rs1) == Rshort(-1));
 
 	////båda ++ operatorerna, dvs. ++rtal; rtal++;
-	//rll3 = RLL(1,6);
-	//assert(++rll3==RLL(7,6));
-	//assert(rll3++==RLL(7,6));
-	//assert(rll3==RLL(13,6));
+	rll3 = RLL(1,6);
+	assert(++rll3 == RLL(7,6));
+	assert(rll3++ == RLL(7,6));
+	assert(rll3 == RLL(13,6));
 
-	//// explicit konvertering till Tal. (Kräver VS2012 och kompilator CTP november 12.
-	//int i = static_cast<int>(rll3);
-	//assert(i==2);
-	//
+	// explicit konvertering till Tal. (Kräver VS2012 och kompilator CTP november 12.
+	int i = static_cast<int>(rll3);
+	assert(i==2);
+	
 
 	// Overloading av << och >> (ut och in matning)
-	//std::cout << "Utmatning>" << rs3 << "< skriv in texten mellan > och < + retur\n";
-	//std::cin >> rs2;
-	//std::cout << rs2;
-	//cin.get();
-	//cin.get();
-	//cin.get();
-	//assert(rs3==rs2);
+	std::cout << "Utmatning>" << rs3 << "< skriv in texten mellan > och < + retur\n";
+	std::cin >> rs2;
+	std::cout << rs2;
+	assert(rs3==rs2);
 	
 }
 
