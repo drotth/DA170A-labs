@@ -46,7 +46,7 @@ void ForwardSort(ForwardIterator begin, ForwardIterator end) {
 
 }
 void uppg2() {
-
+	//dunno what to do.... aah
 }
 
 void uppg3a() {
