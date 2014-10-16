@@ -13,6 +13,6 @@
 int main() {
 	//uppg1();
 	//uppg3a();
-	uppg3b();
+	uppg4();
 	_CrtDumpMemoryLeaks();
 }

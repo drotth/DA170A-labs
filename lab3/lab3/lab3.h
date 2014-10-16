@@ -73,6 +73,10 @@ void uppg3a() {
 }
 
 void uppg3b() {
+	//dunno what to do :(
+}
+
+void uppg4() {
 	vector<int> vec;
 	C<10> arr;
 	for (int i = 0; i < 10; ++i) {
