@@ -11,8 +11,10 @@
 #include "lab3.h"
 
 int main() {
+	srand(time(0));
 	//uppg1();
-	//uppg3a();
-	uppg4();
+	uppg3a();
+	//uppg3b();
+	//uppg4();
 	_CrtDumpMemoryLeaks();
 }

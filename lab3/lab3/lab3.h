@@ -14,6 +14,7 @@
 #include <cstdlib>
 #include <iostream>
 #include <iterator>
+#include <ctime>
 using namespace std;
 
 template <int N> struct C {
@@ -73,7 +74,20 @@ void uppg3a() {
 }
 
 void uppg3b() {
-	//dunno what to do :(
+	vector<int> vec;
+	C<10> arr;
+	for (int i = 0; i < 10; ++i) {
+		arr.value = rand();
+		vec.push_back(arr.value);
+	}
+	for (vector<int>::iterator itr = vec.begin(); itr != vec.end(); ++itr) {
+		cout << *itr << " ";
+	}
+	cout << "(original)";
+	cout << endl << endl;
+
+
+	cin.get();
 }
 
 void uppg4() {
