@@ -74,8 +74,6 @@ void uppg3a() {
 
 void uppg3b() {
 	//dunno what to do :(
-	//dummy comment to be able to push again
-	//testing a commit
 }
 
 void uppg4() {
