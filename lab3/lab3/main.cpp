@@ -11,8 +11,11 @@
 #include "lab3.h"
 
 int main() {
+	srand(time(0));
 	//uppg1();
+	uppg2();
 	//uppg3a();
-	uppg4();
+	//uppg3b();	//lambda function not working correctly
+	//uppg4();
 	_CrtDumpMemoryLeaks();
 }
