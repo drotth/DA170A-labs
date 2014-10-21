@@ -13,8 +13,9 @@
 int main() {
 	srand(time(0));
 	//uppg1();
-	uppg3a();
-	//uppg3b();
+	uppg2();
+	//uppg3a();
+	//uppg3b();	//lambda function not working correctly
 	//uppg4();
 	_CrtDumpMemoryLeaks();
 }
