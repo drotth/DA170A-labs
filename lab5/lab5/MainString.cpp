@@ -14,6 +14,8 @@
 #include <utility>
 using namespace std;
 
+#include "String.h"
+
 
 void TestFörGodkäntString() {
 //-	String()

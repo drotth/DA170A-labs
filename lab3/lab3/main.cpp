@@ -31,21 +31,21 @@ void printline(int number)
 int main() {
 	int number = 0;
 	srand(time(0));
-	printline(++number);
+	/*printline(++number);
 	
 	uppg1();
 	
-	printline(++number);
+	printline(++number);*/
 	uppg2();
 	
-	printline(++number);
-	uppg3a();
-	
-	printline(++number);
-	uppg3b();	//lambda function not working correctly
-	
-	printline(++number);
-	uppg4();
+	//printline(++number);
+	//uppg3a();
+	//
+	//printline(++number);
+	//uppg3b();	//lambda function not working correctly
+	//
+	//printline(++number);
+	//uppg4();
 	cin.get();
 	_CrtDumpMemoryLeaks();
 }

@@ -53,7 +53,18 @@ void ForwardSort(ForwardIterator begin, ForwardIterator end) {
 }
 void uppg2() {
 	//p507 c++-book
-	//dunno what to do.... aah
+	vector<int> vec;
+	C<10> arr;
+	for (int i = 0; i < 10; ++i) {
+		arr.value = rand();
+		vec.push_back(arr.value);
+	}
+	for (vector<int>::iterator itr = vec.begin(); itr != vec.end(); ++itr) {
+		cout << *itr << " ";
+	}
+	cout << endl << endl;
+	ForwardSort(vec.begin(), vec.end());
+
 }
 
 void uppg3a() {
@@ -89,6 +100,9 @@ void uppg3b() {
 	}
 	cout << "(original)" << endl << endl;
 
+	/*for_each(vec.begin(), vec.end(), [](const int &a){
+		
+	});*/
 	sort(vec.begin(), vec.end(), [](const int &a, int const &b) {
 		return b > a; 
 	});

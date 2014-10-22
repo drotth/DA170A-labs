@@ -67,12 +67,9 @@ void TestFörGodkänt() {
 	// Overloading av << och >> (ut och in matning)
 	std::cout << "Utmatning>" << rs3 << "< skriv in texten mellan > och < + retur\n";
 	std::cin >> rs2;
-	std::cout << rs2;
+	std::cout << "This rational was typed in: " << rs2 << endl;
 	assert(rs3==rs2);
 
-	// Test av Reduce/GCD... Reduce funktionen verkar ej fungera!
-	Rint rtest(2, 4);
-	cout << endl << rtest; // Bör skriva ut 1/2 men skriver fortfarande ut 2/4
 	cin.get();
 	cin.get();
 }
