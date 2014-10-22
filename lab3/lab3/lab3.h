@@ -25,7 +25,7 @@ template <int N> struct C {
 void uppg1() {
 	vector<int> vec;
 	C<10> arr;
-	for (int i = 0; i < 100; ++i) {
+	for (int i = 0; i < 10; ++i) {
 		arr.value = rand();
 		vec.push_back(arr.value);
 	}
@@ -39,7 +39,7 @@ void uppg1() {
 	for (vector<int>::iterator itr = vec.begin(); itr != vec.end(); ++itr) {
 		cout << *itr << " ";
 	}
-	cin.get();
+	cout << "(only uneven number)" << endl;
 }
 
 template <class ForwardIterator>
@@ -74,9 +74,7 @@ void uppg3a() {
 	while (rev_from != rev_until) {
 		cout << *rev_from++ << " ";
 	}
-	cout << "(reversed)";
-	cout << endl;
-	cin.get();
+	cout << "(reversed)" << endl;
 }
 
 void uppg3b() {
@@ -89,8 +87,7 @@ void uppg3b() {
 	for (vector<int>::iterator itr = vec.begin(); itr != vec.end(); ++itr) {
 		cout << *itr << " ";
 	}
-	cout << "(original)";
-	cout << endl << endl;
+	cout << "(original)" << endl << endl;
 
 	sort(vec.begin(), vec.end(), [](const int &a, int const &b) {
 		return b > a; 
@@ -99,9 +96,8 @@ void uppg3b() {
 	for (vector<int>::iterator itr = vec.begin(); itr != vec.end(); ++itr) {
 		cout << *itr << " ";
 	}
-	cout << "(reversed)";
+	cout << "(reversed)" << endl;
 
-	cin.get();
 }
 
 void uppg4() {
@@ -117,7 +113,7 @@ void uppg4() {
 	cout << "(original)";
 	cout << endl << endl;
 
-	sort(vec.begin(), vec.end(), [](const int &a, const int &b) -> bool {
+	sort(vec.begin(), vec.end(), [](const int &a, const int &b){
 		return (a > b);
 	});
 
@@ -125,5 +121,4 @@ void uppg4() {
 		cout << *itr << " ";
 	}
 	cout << "(reversed)";
-	cin.get();
 }
