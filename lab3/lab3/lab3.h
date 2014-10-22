@@ -18,7 +18,7 @@
 using namespace std;
 
 template <int N> struct C {
-	int value; //det är denna som används
+	float value; //det är denna som används
 	int a[N]; //bara en placeholder för att det ska ta tid att kopiera ett C objekt.
 };
 
@@ -44,15 +44,12 @@ void uppg1() {
 
 template <class ForwardIterator>
 void ForwardSort(ForwardIterator begin, ForwardIterator end) {
-
-
-	/*Den ska bara använda forward iterator funktionerna
-		(dvs.man kan göra 
-		*it, ++it, it1 != it2 
-		och inte så mycket mera) och sortera containerna den används för.*/
+	vector<int>::iterator it1, it2 = end;
+	for (it1 = begin; it1 != it2; ++it1) {
+		cout << *it1 << " ";
+	}
 }
 void uppg2() {
-	//p507 c++-book
 	vector<int> vec;
 	C<10> arr;
 	for (int i = 0; i < 10; ++i) {
@@ -64,7 +61,7 @@ void uppg2() {
 	}
 	cout << endl << endl;
 	ForwardSort(vec.begin(), vec.end());
-
+	cout << "(ForwardSorted)" << endl;
 }
 
 void uppg3a() {
