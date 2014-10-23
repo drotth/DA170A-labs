@@ -39,14 +39,14 @@ void uppg1() {
 	for (vector<int>::iterator itr = vec.begin(); itr != vec.end(); ++itr) {
 		cout << *itr << " ";
 	}
-	cout << "(only uneven number)" << endl;
+	cout << "(Only uneven number, unsorted)" << endl;
 }
 
 template <class ForwardIterator>
 void ForwardSort(ForwardIterator begin, ForwardIterator end) {
 	vector<int>::iterator it1, it2 = end;
 	for (it1 = begin; it1 != it2; ++it1) {
-		cout << *it1 << " ";
+		std::sort(begin, end);
 	}
 }
 void uppg2() {
@@ -61,7 +61,10 @@ void uppg2() {
 	}
 	cout << endl << endl;
 	ForwardSort(vec.begin(), vec.end());
-	cout << "(ForwardSorted)" << endl;
+	for (vector<int>::iterator itr = vec.begin(); itr != vec.end(); ++itr) {
+		cout << *itr << " ";
+	}
+	cout << "(Forward sorted)" << endl;
 }
 
 void uppg3a() {
@@ -76,13 +79,16 @@ void uppg3a() {
 	}
 	cout << "(original)";
 	cout << endl << endl;
-	reverse_iterator<vector<int>::iterator> rev_from(vec.end());
-	reverse_iterator<vector<int>::iterator> rev_until(vec.begin());
 
-	while (rev_from != rev_until) {
-		cout << *rev_from++ << " ";
+	for (reverse_iterator<vector<int>::iterator> itr = vec.rbegin(); itr != vec.rend(); ++itr) {
+		//cout << *itr << " ";
+		sort(vec.rbegin(), vec.rend());
 	}
-	cout << "(reversed)" << endl;
+	for (vector<int>::iterator itr = vec.begin(); itr != vec.end(); ++itr) {
+		cout << *itr << " ";
+	}
+
+	cout << "(Reversed sorted)" << endl;
 }
 
 void uppg3b() {
@@ -104,7 +110,7 @@ void uppg3b() {
 	for (vector<int>::iterator itr = vec.begin(); itr != vec.end(); ++itr) {
 		cout << *itr << " ";
 	}
-	cout << "(reversed)" << endl;
+	cout << "(Reversed sorted)" << endl;
 
 }
 
