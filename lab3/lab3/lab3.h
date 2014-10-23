@@ -14,10 +14,11 @@
 #include <cstdlib>
 #include <iostream>
 #include <iterator>
+#include <ctime>
 using namespace std;
 
 template <int N> struct C {
-	float value; //det är denna som används
+	int value; //det är denna som används
 	int a[N]; //bara en placeholder för att det ska ta tid att kopiera ett C objekt.
 };
 
@@ -44,8 +45,14 @@ void uppg1() {
 template <class ForwardIterator>
 void ForwardSort(ForwardIterator begin, ForwardIterator end) {
 
+
+	/*Den ska bara använda forward iterator funktionerna
+		(dvs.man kan göra 
+		*it, ++it, it1 != it2 
+		och inte så mycket mera) och sortera containerna den används för.*/
 }
 void uppg2() {
+	//p507 c++-book
 	//dunno what to do.... aah
 }
 
@@ -73,9 +80,28 @@ void uppg3a() {
 }
 
 void uppg3b() {
-	//dunno what to do :(
-	//dummy comment to be able to push again
-	//testing a commit
+	vector<int> vec;
+	C<10> arr;
+	for (int i = 0; i < 10; ++i) {
+		arr.value = rand();
+		vec.push_back(arr.value);
+	}
+	for (vector<int>::iterator itr = vec.begin(); itr != vec.end(); ++itr) {
+		cout << *itr << " ";
+	}
+	cout << "(original)";
+	cout << endl << endl;
+
+	sort(vec.begin(), vec.end(), [](const int &a, int const &b) {
+		return b > a; 
+	});
+
+	for (vector<int>::iterator itr = vec.begin(); itr != vec.end(); ++itr) {
+		cout << *itr << " ";
+	}
+	cout << "(reversed)";
+
+	cin.get();
 }
 
 void uppg4() {
