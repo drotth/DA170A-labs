@@ -97,11 +97,8 @@ void uppg3b() {
 	}
 	cout << "(original)" << endl << endl;
 
-	/*for_each(vec.begin(), vec.end(), [](const int &a){
-		
-	});*/
 	sort(vec.begin(), vec.end(), [](const int &a, int const &b) {
-		return b > a; 
+		return a > b; 
 	});
 
 	for (vector<int>::iterator itr = vec.begin(); itr != vec.end(); ++itr) {
