@@ -64,8 +64,9 @@ public:
 		return tempRat;
 	}
 
-	explicit operator int () const {
-		return int (P / Q);
+	template <typename rat>
+	explicit operator rat () const {
+		return rat (P / Q);
 	};
 
 	friend std::ostream& operator<< (std::ostream &cout, Rational<Tint> R){
