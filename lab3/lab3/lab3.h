@@ -18,14 +18,14 @@
 using namespace std;
 
 template <int N> struct C {
-	int value; //det är denna som används
+	float value; //det är denna som används
 	int a[N]; //bara en placeholder för att det ska ta tid att kopiera ett C objekt.
 };
 
 void uppg1() {
 	vector<int> vec;
 	C<10> arr;
-	for (int i = 0; i < 100; ++i) {
+	for (int i = 0; i < 10; ++i) {
 		arr.value = rand();
 		vec.push_back(arr.value);
 	}
@@ -39,21 +39,32 @@ void uppg1() {
 	for (vector<int>::iterator itr = vec.begin(); itr != vec.end(); ++itr) {
 		cout << *itr << " ";
 	}
-	cin.get();
+	cout << "(Only uneven number, unsorted)" << endl;
 }
 
 template <class ForwardIterator>
 void ForwardSort(ForwardIterator begin, ForwardIterator end) {
-
-
-	/*Den ska bara använda forward iterator funktionerna
-		(dvs.man kan göra 
-		*it, ++it, it1 != it2 
-		och inte så mycket mera) och sortera containerna den används för.*/
+	vector<int>::iterator it1, it2 = end;
+	for (it1 = begin; it1 != it2; ++it1) {
+		std::sort(begin, end);
+	}
 }
 void uppg2() {
-	//p507 c++-book
-	//dunno what to do.... aah
+	vector<int> vec;
+	C<10> arr;
+	for (int i = 0; i < 10; ++i) {
+		arr.value = rand();
+		vec.push_back(arr.value);
+	}
+	for (vector<int>::iterator itr = vec.begin(); itr != vec.end(); ++itr) {
+		cout << *itr << " ";
+	}
+	cout << endl << endl;
+	ForwardSort(vec.begin(), vec.end());
+	for (vector<int>::iterator itr = vec.begin(); itr != vec.end(); ++itr) {
+		cout << *itr << " ";
+	}
+	cout << "(Forward sorted)" << endl;
 }
 
 void uppg3a() {
@@ -68,15 +79,16 @@ void uppg3a() {
 	}
 	cout << "(original)";
 	cout << endl << endl;
-	reverse_iterator<vector<int>::iterator> rev_from(vec.end());
-	reverse_iterator<vector<int>::iterator> rev_until(vec.begin());
 
-	while (rev_from != rev_until) {
-		cout << *rev_from++ << " ";
+	for (reverse_iterator<vector<int>::iterator> itr = vec.rbegin(); itr != vec.rend(); ++itr) {
+		//cout << *itr << " ";
+		sort(vec.rbegin(), vec.rend());
 	}
-	cout << "(reversed)";
-	cout << endl;
-	cin.get();
+	for (vector<int>::iterator itr = vec.begin(); itr != vec.end(); ++itr) {
+		cout << *itr << " ";
+	}
+
+	cout << "(Reversed sorted)" << endl;
 }
 
 void uppg3b() {
@@ -89,19 +101,17 @@ void uppg3b() {
 	for (vector<int>::iterator itr = vec.begin(); itr != vec.end(); ++itr) {
 		cout << *itr << " ";
 	}
-	cout << "(original)";
-	cout << endl << endl;
+	cout << "(original)" << endl << endl;
 
 	sort(vec.begin(), vec.end(), [](const int &a, int const &b) {
-		return b > a; 
+		return a > b; 
 	});
 
 	for (vector<int>::iterator itr = vec.begin(); itr != vec.end(); ++itr) {
 		cout << *itr << " ";
 	}
-	cout << "(reversed)";
+	cout << "(Reversed sorted)" << endl;
 
-	cin.get();
 }
 
 void uppg4() {
@@ -117,7 +127,7 @@ void uppg4() {
 	cout << "(original)";
 	cout << endl << endl;
 
-	sort(vec.begin(), vec.end(), [](const int &a, const int &b) -> bool {
+	sort(vec.begin(), vec.end(), [](const int &a, const int &b){
 		return (a > b);
 	});
 
@@ -125,5 +135,4 @@ void uppg4() {
 		cout << *itr << " ";
 	}
 	cout << "(reversed)";
-	cin.get();
 }

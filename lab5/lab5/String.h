@@ -9,6 +9,7 @@
 #endif
 #endif
 
+
 #include <iostream>
 
 class String{
@@ -28,10 +29,12 @@ public:
 	*/
 	//char& at(int i);
 
+
 	/*
 	indexerar utan range check
 	*/
 	//char& operator[](int i);
+
 
 	/*
 	gives a reference to the internal array holding the string,
@@ -99,4 +102,6 @@ public:
 
 
 	~String();
+
 };
+
