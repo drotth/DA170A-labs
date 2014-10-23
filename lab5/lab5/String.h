@@ -9,6 +9,7 @@
 #endif
 #endif
 
+
 #include <iostream>
 
 class String{
@@ -101,4 +102,6 @@ public:
 
 
 	~String();
+
 };
+

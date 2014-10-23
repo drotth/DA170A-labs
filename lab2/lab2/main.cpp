@@ -70,8 +70,10 @@ void TestFörGodkänt() {
 	std::cout << "This rational was typed in: " << rs2 << endl;
 	assert(rs3==rs2);
 
+
 	cin.get();
 	cin.get();
+
 }
 
 //void TestFörVälGodkänt() {
