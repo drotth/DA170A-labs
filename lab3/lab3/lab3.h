@@ -18,7 +18,7 @@
 using namespace std;
 
 template <int N> struct C {
-	float value; //det är denna som används
+	int value; //det är denna som används
 	int a[N]; //bara en placeholder för att det ska ta tid att kopiera ett C objekt.
 };
 
@@ -115,23 +115,23 @@ void uppg3b() {
 }
 
 void uppg4() {
-	vector<int> vec;
+	vector<int*> vec;
 	C<10> arr;
 	for (int i = 0; i < 10; ++i) {
 		arr.value = rand();
-		vec.push_back(arr.value);
+		vec.push_back(&arr.value);
 	}
-	for (vector<int>::iterator itr = vec.begin(); itr != vec.end(); ++itr) {
+	for (vector<int*>::iterator itr = vec.begin(); itr != vec.end(); ++itr) {
 		cout << *itr << " ";
 	}
 	cout << "(original)";
 	cout << endl << endl;
 
-	sort(vec.begin(), vec.end(), [](const int &a, const int &b){
+	sort(vec.begin(), vec.end(), [](int *a, int *b)->bool{
 		return (a > b);
 	});
 
-	for (vector<int>::iterator itr = vec.begin(); itr != vec.end(); ++itr) {
+	for (vector<int*>::iterator itr = vec.begin(); itr != vec.end(); ++itr) {
 		cout << *itr << " ";
 	}
 	cout << "(reversed)";
