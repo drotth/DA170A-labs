@@ -128,7 +128,7 @@ void uppg4() {
 	cout << endl << endl;
 
 	sort(vec.begin(), vec.end(), [](int *a, int *b)->bool{
-		return (a > b);
+		return (a < b);
 	});
 
 	for (vector<int*>::iterator itr = vec.begin(); itr != vec.end(); ++itr) {
