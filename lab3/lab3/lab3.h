@@ -104,7 +104,7 @@ void uppg3b() {
 	cout << "(original)" << endl << endl;
 
 	sort(vec.begin(), vec.end(), [](const int &a, int const &b) {
-		return a > b; 
+		return a > b;
 	});
 
 	for (vector<int>::iterator itr = vec.begin(); itr != vec.end(); ++itr) {
@@ -128,7 +128,7 @@ void uppg4() {
 	cout << endl << endl;
 
 	sort(vec.begin(), vec.end(), [](const int &a, const int &b){
-		return (a > b);
+		return (a < b);
 	});
 
 	for (vector<int>::iterator itr = vec.begin(); itr != vec.end(); ++itr) {
