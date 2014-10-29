@@ -42,7 +42,7 @@ int main() {
 	uppg3a();
 	
 	printline(++number);
-	uppg3b();	//lambda function not working correctly
+	uppg3b();
 	
 	printline(++number);
 	uppg4();
