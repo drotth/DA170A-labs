@@ -14,11 +14,8 @@
 
 class String{
 public:
-	//char *word;
-
-	String(){
-		//word = "";
-	}
+	char *word;
+	String();
 	//String(const String& rhs);
 	//String(const char* cstr);
 	//String& operator=(const String& rhs);
@@ -105,7 +102,6 @@ public:
 
 
 	~String();
+
 };
 
-
-//String::String(const String &orig):

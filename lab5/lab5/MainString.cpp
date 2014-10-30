@@ -1,17 +1,16 @@
 #define _CRTDBG_MAP_ALLOC
 #ifdef _DEBUG
-	#ifndef DBG_NEW
-		#define DBG_NEW new ( _NORMAL_BLOCK , __FILE__ , __LINE__ )
-		#define new DBG_NEW
-	#endif
+#ifndef DBG_NEW
+#define DBG_NEW new ( _NORMAL_BLOCK , __FILE__ , __LINE__ )
+#define new DBG_NEW
+#endif
 #endif  // _DEBUG
 #include <stdlib.h>
 #include <crtdbg.h>
 
 #include <string>
 #include <iostream>
-//#include <cassert>
-#include <assert.h>
+#include <cassert>
 #include <utility>
 using namespace std;
 
@@ -19,11 +18,11 @@ using namespace std;
 
 
 void TestFörGodkäntString() {
-
-
 	//-	String()
-	String s0;
+	
+	//String s0;	
 	//assert (s0=="");
+	
 
 	//-	String(Sträng sträng)
 	/*
@@ -149,51 +148,52 @@ void TestFörGodkäntString() {
 
 	//-	const char* c_str()
 	//tested above!
+
 }
 
-//void TestFörVälGodkäntString() {
+void TestFörVälGodkäntString() {
 	/*
 	const String c1;
 	String s1("bar");
-//-	Ha alla ”const” exakt rätt.
-//-	För en del funktioner bör man även ha en const och en icke const version, se nedan.
-//följande ska inte kompilera
+	//-	Ha alla ”const” exakt rätt.
+	//-	För en del funktioner bör man även ha en const och en icke const version, se nedan.
+	//följande ska inte kompilera
 	//c1[2]='a';
 	//c1.at(2)='a';
 	//c1+=s1;
 	//(c1+=c1)="huj";
 
-//följande ska kompilera och köra
+	//följande ska kompilera och köra
 	s1[3]='a';	//fast det skriver över \0 på slutet!
 	s1[3]='\0';
 	s1.at(2)='a';
 	c1+c1;
 	s1+=c1;
 
-//-	Implementera en så kallad move konstruktor se: http://en.cppreference.com/w/cpp/language/move_constructor. Den ska vara maximalt effektiv.
+	//-	Implementera en så kallad move konstruktor se: http://en.cppreference.com/w/cpp/language/move_constructor. Den ska vara maximalt effektiv.
 	s1="bar";
 	String s2(std::move(s1));
 	assert(s2=="bar" && s1.capacity()==0);
 
-//-	Implementera även en move assignment operator.
+	//-	Implementera även en move assignment operator.
 	s1=std::move(s2);
 	assert(s1=="bar" && s2.capacity()==0);
 
-//-	Det hela ska vara ”maximalt” effektivt – fast gå inte till överdrift.:
-//o	Om ni t.ex. samlat större delen av koden för konstruktorerna i en hjälpfunktion så kostar det inte mycket - särskilt om ni ”inlinar” den.
-//o	Ni kan däremot tänka er att ni har mycket långa strängar, då kostar onödig kopierng av dem.
-//o	All onödig allokering av dynamiskt minne kostar!
-//DETTA KAN MAN BARA KOLLA GENOM ATT TITTA PÅ KODEN
+	//-	Det hela ska vara ”maximalt” effektivt – fast gå inte till överdrift.:
+	//o	Om ni t.ex. samlat större delen av koden för konstruktorerna i en hjälpfunktion så kostar det inte mycket - särskilt om ni ”inlinar” den.
+	//o	Ni kan däremot tänka er att ni har mycket långa strängar, då kostar onödig kopierng av dem.
+	//o	All onödig allokering av dynamiskt minne kostar!
+	//DETTA KAN MAN BARA KOLLA GENOM ATT TITTA PÅ KODEN
 
-//-	operator[](int i) som indexerar utan range check – ni måste uppfylla ”if pos == size(), a reference to the character with value CharT() (the null character) is returned.”
+	//-	operator[](int i) som indexerar utan range check – ni måste uppfylla ”if pos == size(), a reference to the character with value CharT() (the null character) is returned.”
 	s2=""; assert(s2[s2.length()]=='\0');
 	s2="bar"; assert(s2[s2.length()]=='\0');
 	*/
-//}
+}
 
 
 int main() {
-	_CrtSetDbgFlag ( _CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF );
+	_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
 	TestFörGodkäntString();
 	//TestFörVälGodkäntString();
 	cin.get();
