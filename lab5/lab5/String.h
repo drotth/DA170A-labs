@@ -9,13 +9,16 @@
 #endif
 #endif
 
-
+#include "RelOps.h"
 #include <iostream>
 
 class String{
 public:
+	//char *word;
 
-	String();
+	String(){
+		//word = "";
+	}
 	//String(const String& rhs);
 	//String(const char* cstr);
 	//String& operator=(const String& rhs);
@@ -102,6 +105,7 @@ public:
 
 
 	~String();
-
 };
 
+
+//String::String(const String &orig):

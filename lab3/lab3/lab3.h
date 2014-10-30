@@ -61,65 +61,6 @@ void ForwardSort(ForwardIterator begin, ForwardIterator end) {
 }
 
 
-	//vector<float>::iterator it1 = begin, it2 = end, it3 = begin;
-	//float temp;
-	//bool finished = false;
-	//while (it1 != it2 && !finished){
-	//	finished = true;
-	//	++it3;
-	//	while (it3 != it2){
-	//		if (*it3 > *(it3 + 1)){
-	//			temp = *it3;
-	//			*it3 = *(it3 + 1);
-	//			*(it3 + 1) = temp;
-	//			finished = false;
-	//		}
-	//	}
-	//	--it2;
-	//}
-
-	
-	//for (it1; it1 != (it2-1); ++it1) {
-	//	for (it3; it3 != (it2 - it1 - 1); ++it3){
-	//		if (*it3 > *(it3 + 1))
-	//		{
-	//			//using ::std::swap;
-	//			std::swap(*it3, *(it3+1));
-	//			/*temp = *it3;
-	//			*it3 = *(it3 + 1);
-	//			*(it3 + 1) = temp;*/
-	//		}
-	//	}
-
-		/*for (it3; it3 != (it2 - it1 - 1); ++it3){
-			if (*it3 < *(it3 + 1)){
-				temp = *it3;
-				*it3 = *(it3 + 1);
-				*(it3 + 1) = temp;
-			}
-		}*/
-
-	
-	//swap(*begin, *end);
-
-//	vector<float>::iterator it1, it2 = end;
-//	float swap;
-//	for (it1 = begin; it1 != it2; ++it1) {
-//		if (*it1 < *it1 + 1)
-//		{
-//			std::swap(*it1, (*it1 + 1));
-///*
-//			swap = *it1;
-//			*it1 = (*it1 + 1);
-//
-//			(*it1 + 1) = swap;*/
-//		}
-//		//std::sort(begin, end);
-//		//swap(begin, end);
-//		
-//
-//	}
-
 
 void uppg2() {
 	vector<float> vec;

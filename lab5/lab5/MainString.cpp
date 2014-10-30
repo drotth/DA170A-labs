@@ -10,7 +10,8 @@
 
 #include <string>
 #include <iostream>
-#include <cassert>
+//#include <cassert>
+#include <assert.h>
 #include <utility>
 using namespace std;
 
@@ -18,24 +19,25 @@ using namespace std;
 
 
 void TestFörGodkäntString() {
-//-	String()
-	/*
-	String s0;	assert (s0=="");
-	*/
 
-//-	String(Sträng sträng)
+
+	//-	String()
+	String s0;
+	//assert (s0=="");
+
+	//-	String(Sträng sträng)
 	/*
 	String s1("foo"); assert(s1=="foo");
 	String s2(s1); assert(s2=="foo");
 	String s3("bar");  assert(s3=="bar");
 	*/
 
-//-	~String() Kom ihåg destruktorn!
+	//-	~String() Kom ihåg destruktorn!
 	/*
 	delete new String("hej");
 	*/
 
-//	-	operator =(Sträng sträng)
+	//	-	operator =(Sträng sträng)
 	/*
 	assert((s2=s3)==s3);
 	assert((s2=s2)==s3);
@@ -43,7 +45,7 @@ void TestFörGodkäntString() {
 	assert((s2="bar")=="bar");
 	*/
 
-//-	operator+=(Sträng sträng) som tolkas som konkatenering.
+	//-	operator+=(Sträng sträng) som tolkas som konkatenering.
 	//foo, bar, bar
 	/*
 	(s2+=s1)+=(s3+=s1);
@@ -78,7 +80,7 @@ void TestFörGodkäntString() {
 	assert(s3=="barbar");
 	*/
 
-//-	operator+ räcker med bara String+String
+	//-	operator+ räcker med bara String+String
 	/*
 	s2="bar";
 	*/
@@ -90,29 +92,29 @@ void TestFörGodkäntString() {
 	assert(s1+s2=="foobar" && s1=="foo");
 	*/
 
-//-	operator== räcker med String==Sträng
+	//-	operator== räcker med String==Sträng
 	//testas överallt!
 
-//-	at(int i) som indexerar med range check
+	//-	at(int i) som indexerar med range check
 	/*
 	try {
-	 s2.at(-1);
-	 assert(false);
+	s2.at(-1);
+	assert(false);
 	} catch (std::out_of_range&) {};
 	try {
-	 s2.at(3);
-	 assert(false);
+	s2.at(3);
+	assert(false);
 	} catch (std::out_of_range&) {};
 	assert(s2.at(2)='r');
 	*/
 
-//-	operator[](int i) som indexerar utan range check.
+	//-	operator[](int i) som indexerar utan range check.
 	/*
 	s2[-1]; s2[1000];
 	assert(s2[1]=='a');
 	*/
 
-//-	push_back(char c) lägger till ett tecken sist.
+	//-	push_back(char c) lägger till ett tecken sist.
 	/*
 	s2.push_back('a');
 	assert(s2=="bara");
@@ -129,28 +131,27 @@ void TestFörGodkäntString() {
 	/*
 	s2.data();
 	if(s2.length()==s2.capacity()) {
-		//lagrar strängen med \0
-		const char * p1 = s2.data();
-		s2.reserve(len); assert(p1==s2.data()); //no change
-		p1= s2.data(); s2.reserve(len+1); assert(p1!=s2.data()); //change
-		p1= s2.data(); s2.shrink_to_fit();  assert(p1!=s2.data()); //change
-		p1= s2.data(); s2.shrink_to_fit();  assert(p1==s2.data()); //no change
+	//lagrar strängen med \0
+	const char * p1 = s2.data();
+	s2.reserve(len); assert(p1==s2.data()); //no change
+	p1= s2.data(); s2.reserve(len+1); assert(p1!=s2.data()); //change
+	p1= s2.data(); s2.shrink_to_fit();  assert(p1!=s2.data()); //change
+	p1= s2.data(); s2.shrink_to_fit();  assert(p1==s2.data()); //no change
 	} else {
-		//lagrar strängen utan \0
-		int cap;
-		s2.data(); cap=s2.capacity(); s2.shrink_to_fit(); assert(cap!=s2.capacity()); //change
-		cap=s2.capacity(); s2.data(); assert(cap!=s2.capacity()); //change
-		s2.shrink_to_fit(); cap=s2.capacity(); s2.reserve(len); assert(cap==s2.capacity()); //change
-		s2.reserve(len+1); assert(cap!=s2.capacity()); //change
+	//lagrar strängen utan \0
+	int cap;
+	s2.data(); cap=s2.capacity(); s2.shrink_to_fit(); assert(cap!=s2.capacity()); //change
+	cap=s2.capacity(); s2.data(); assert(cap!=s2.capacity()); //change
+	s2.shrink_to_fit(); cap=s2.capacity(); s2.reserve(len); assert(cap==s2.capacity()); //change
+	s2.reserve(len+1); assert(cap!=s2.capacity()); //change
 	}
 	*/
 
-//-	const char* c_str()
+	//-	const char* c_str()
 	//tested above!
-
 }
 
-void TestFörVälGodkäntString() {
+//void TestFörVälGodkäntString() {
 	/*
 	const String c1;
 	String s1("bar");
@@ -188,12 +189,12 @@ void TestFörVälGodkäntString() {
 	s2=""; assert(s2[s2.length()]=='\0');
 	s2="bar"; assert(s2[s2.length()]=='\0');
 	*/
-}
+//}
 
 
 int main() {
 	_CrtSetDbgFlag ( _CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF );
 	TestFörGodkäntString();
-	TestFörVälGodkäntString();
+	//TestFörVälGodkäntString();
 	cin.get();
 }
