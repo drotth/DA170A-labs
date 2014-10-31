@@ -21,20 +21,16 @@ void TestFörGodkäntString() {
 	//-	String()
 	
 	String s0;	
-	//assert (s0=="");
+	assert (s0=="");
 	
 
 	//-	String(Sträng sträng)
-	/*
 	String s1("foo"); assert(s1=="foo");
 	String s2(s1); assert(s2=="foo");
 	String s3("bar");  assert(s3=="bar");
-	*/
 
 	//-	~String() Kom ihåg destruktorn!
-	/*
 	delete new String("hej");
-	*/
 
 	//	-	operator =(Sträng sträng)
 	/*
