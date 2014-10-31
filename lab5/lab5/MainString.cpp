@@ -20,7 +20,7 @@ using namespace std;
 void TestFörGodkäntString() {
 	//-	String()
 	
-	//String s0;	
+	String s0;	
 	//assert (s0=="");
 	
 

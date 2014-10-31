@@ -14,8 +14,16 @@
 
 class String{
 public:
-	char *word;
-	String();
+	char word[2];
+	char *p;
+	String(){
+		p = "";
+	}
+
+	bool operator== (const String rhs) const{
+		return (p == rhs.p);
+	}
+
 	//String(const String& rhs);
 	//String(const char* cstr);
 	//String& operator=(const String& rhs);
@@ -101,7 +109,7 @@ public:
 	//friend std:: ostream& operator<< (std::ostream&cout, String in);
 
 
-	~String();
+	//~String();
 
 };
 
