@@ -27,8 +27,7 @@ public:
 	Rational(Rational<rat> R) : P(R.P), Q(R.Q) {}
 
 	bool operator== (const Rational rhs) const{
-		if (P == rhs.P && Q == rhs.Q) return true;
-		else return false;
+		return (P == rhs.P && Q == rhs.Q);
 	}
 
 	Rational operator+ (const Rational rhs) const {

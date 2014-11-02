@@ -9,14 +9,22 @@
 #endif
 #endif
 
-
+#include "RelOps.h"
 #include <iostream>
 
 class String{
 public:
+	char word;
+	char *p;
+	String(char *p = "") : p(p) {}
 
-	String();
-	//String(const String& rhs);
+	bool operator== (const String &rhs) const{
+		return (p == rhs.p);
+	}
+
+	//String(const String& rhs){
+	//	*p = *rhs.p;
+	//}
 	//String(const char* cstr);
 	//String& operator=(const String& rhs);
 	//String& operator=(const char* cstr);
@@ -101,7 +109,9 @@ public:
 	//friend std:: ostream& operator<< (std::ostream&cout, String in);
 
 
-	~String();
+	~String(){
+		//delete p;
+	}
 
 };
 

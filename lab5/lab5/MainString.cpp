@@ -1,9 +1,9 @@
 #define _CRTDBG_MAP_ALLOC
 #ifdef _DEBUG
-	#ifndef DBG_NEW
-		#define DBG_NEW new ( _NORMAL_BLOCK , __FILE__ , __LINE__ )
-		#define new DBG_NEW
-	#endif
+#ifndef DBG_NEW
+#define DBG_NEW new ( _NORMAL_BLOCK , __FILE__ , __LINE__ )
+#define new DBG_NEW
+#endif
 #endif  // _DEBUG
 #include <stdlib.h>
 #include <crtdbg.h>
@@ -18,24 +18,21 @@ using namespace std;
 
 
 void TestFörGodkäntString() {
-//-	String()
-	/*
-	String s0;	assert (s0=="");
-	*/
+	//-	String()
+	
+	String s0;	
+	assert (s0=="");
+	
 
-//-	String(Sträng sträng)
-	/*
+	//-	String(Sträng sträng)
 	String s1("foo"); assert(s1=="foo");
 	String s2(s1); assert(s2=="foo");
 	String s3("bar");  assert(s3=="bar");
-	*/
 
-//-	~String() Kom ihåg destruktorn!
-	/*
+	//-	~String() Kom ihåg destruktorn!
 	delete new String("hej");
-	*/
 
-//	-	operator =(Sträng sträng)
+	//	-	operator =(Sträng sträng)
 	/*
 	assert((s2=s3)==s3);
 	assert((s2=s2)==s3);
@@ -43,7 +40,7 @@ void TestFörGodkäntString() {
 	assert((s2="bar")=="bar");
 	*/
 
-//-	operator+=(Sträng sträng) som tolkas som konkatenering.
+	//-	operator+=(Sträng sträng) som tolkas som konkatenering.
 	//foo, bar, bar
 	/*
 	(s2+=s1)+=(s3+=s1);
@@ -78,7 +75,7 @@ void TestFörGodkäntString() {
 	assert(s3=="barbar");
 	*/
 
-//-	operator+ räcker med bara String+String
+	//-	operator+ räcker med bara String+String
 	/*
 	s2="bar";
 	*/
@@ -90,29 +87,29 @@ void TestFörGodkäntString() {
 	assert(s1+s2=="foobar" && s1=="foo");
 	*/
 
-//-	operator== räcker med String==Sträng
+	//-	operator== räcker med String==Sträng
 	//testas överallt!
 
-//-	at(int i) som indexerar med range check
+	//-	at(int i) som indexerar med range check
 	/*
 	try {
-	 s2.at(-1);
-	 assert(false);
+	s2.at(-1);
+	assert(false);
 	} catch (std::out_of_range&) {};
 	try {
-	 s2.at(3);
-	 assert(false);
+	s2.at(3);
+	assert(false);
 	} catch (std::out_of_range&) {};
 	assert(s2.at(2)='r');
 	*/
 
-//-	operator[](int i) som indexerar utan range check.
+	//-	operator[](int i) som indexerar utan range check.
 	/*
 	s2[-1]; s2[1000];
 	assert(s2[1]=='a');
 	*/
 
-//-	push_back(char c) lägger till ett tecken sist.
+	//-	push_back(char c) lägger till ett tecken sist.
 	/*
 	s2.push_back('a');
 	assert(s2=="bara");
@@ -129,23 +126,23 @@ void TestFörGodkäntString() {
 	/*
 	s2.data();
 	if(s2.length()==s2.capacity()) {
-		//lagrar strängen med \0
-		const char * p1 = s2.data();
-		s2.reserve(len); assert(p1==s2.data()); //no change
-		p1= s2.data(); s2.reserve(len+1); assert(p1!=s2.data()); //change
-		p1= s2.data(); s2.shrink_to_fit();  assert(p1!=s2.data()); //change
-		p1= s2.data(); s2.shrink_to_fit();  assert(p1==s2.data()); //no change
+	//lagrar strängen med \0
+	const char * p1 = s2.data();
+	s2.reserve(len); assert(p1==s2.data()); //no change
+	p1= s2.data(); s2.reserve(len+1); assert(p1!=s2.data()); //change
+	p1= s2.data(); s2.shrink_to_fit();  assert(p1!=s2.data()); //change
+	p1= s2.data(); s2.shrink_to_fit();  assert(p1==s2.data()); //no change
 	} else {
-		//lagrar strängen utan \0
-		int cap;
-		s2.data(); cap=s2.capacity(); s2.shrink_to_fit(); assert(cap!=s2.capacity()); //change
-		cap=s2.capacity(); s2.data(); assert(cap!=s2.capacity()); //change
-		s2.shrink_to_fit(); cap=s2.capacity(); s2.reserve(len); assert(cap==s2.capacity()); //change
-		s2.reserve(len+1); assert(cap!=s2.capacity()); //change
+	//lagrar strängen utan \0
+	int cap;
+	s2.data(); cap=s2.capacity(); s2.shrink_to_fit(); assert(cap!=s2.capacity()); //change
+	cap=s2.capacity(); s2.data(); assert(cap!=s2.capacity()); //change
+	s2.shrink_to_fit(); cap=s2.capacity(); s2.reserve(len); assert(cap==s2.capacity()); //change
+	s2.reserve(len+1); assert(cap!=s2.capacity()); //change
 	}
 	*/
 
-//-	const char* c_str()
+	//-	const char* c_str()
 	//tested above!
 
 }
@@ -154,37 +151,37 @@ void TestFörVälGodkäntString() {
 	/*
 	const String c1;
 	String s1("bar");
-//-	Ha alla ”const” exakt rätt.
-//-	För en del funktioner bör man även ha en const och en icke const version, se nedan.
-//följande ska inte kompilera
+	//-	Ha alla ”const” exakt rätt.
+	//-	För en del funktioner bör man även ha en const och en icke const version, se nedan.
+	//följande ska inte kompilera
 	//c1[2]='a';
 	//c1.at(2)='a';
 	//c1+=s1;
 	//(c1+=c1)="huj";
 
-//följande ska kompilera och köra
+	//följande ska kompilera och köra
 	s1[3]='a';	//fast det skriver över \0 på slutet!
 	s1[3]='\0';
 	s1.at(2)='a';
 	c1+c1;
 	s1+=c1;
 
-//-	Implementera en så kallad move konstruktor se: http://en.cppreference.com/w/cpp/language/move_constructor. Den ska vara maximalt effektiv.
+	//-	Implementera en så kallad move konstruktor se: http://en.cppreference.com/w/cpp/language/move_constructor. Den ska vara maximalt effektiv.
 	s1="bar";
 	String s2(std::move(s1));
 	assert(s2=="bar" && s1.capacity()==0);
 
-//-	Implementera även en move assignment operator.
+	//-	Implementera även en move assignment operator.
 	s1=std::move(s2);
 	assert(s1=="bar" && s2.capacity()==0);
 
-//-	Det hela ska vara ”maximalt” effektivt – fast gå inte till överdrift.:
-//o	Om ni t.ex. samlat större delen av koden för konstruktorerna i en hjälpfunktion så kostar det inte mycket - särskilt om ni ”inlinar” den.
-//o	Ni kan däremot tänka er att ni har mycket långa strängar, då kostar onödig kopierng av dem.
-//o	All onödig allokering av dynamiskt minne kostar!
-//DETTA KAN MAN BARA KOLLA GENOM ATT TITTA PÅ KODEN
+	//-	Det hela ska vara ”maximalt” effektivt – fast gå inte till överdrift.:
+	//o	Om ni t.ex. samlat större delen av koden för konstruktorerna i en hjälpfunktion så kostar det inte mycket - särskilt om ni ”inlinar” den.
+	//o	Ni kan däremot tänka er att ni har mycket långa strängar, då kostar onödig kopierng av dem.
+	//o	All onödig allokering av dynamiskt minne kostar!
+	//DETTA KAN MAN BARA KOLLA GENOM ATT TITTA PÅ KODEN
 
-//-	operator[](int i) som indexerar utan range check – ni måste uppfylla ”if pos == size(), a reference to the character with value CharT() (the null character) is returned.”
+	//-	operator[](int i) som indexerar utan range check – ni måste uppfylla ”if pos == size(), a reference to the character with value CharT() (the null character) is returned.”
 	s2=""; assert(s2[s2.length()]=='\0');
 	s2="bar"; assert(s2[s2.length()]=='\0');
 	*/
@@ -192,8 +189,8 @@ void TestFörVälGodkäntString() {
 
 
 int main() {
-	_CrtSetDbgFlag ( _CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF );
+	_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
 	TestFörGodkäntString();
-	TestFörVälGodkäntString();
+	//TestFörVälGodkäntString();
 	cin.get();
 }
