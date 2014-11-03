@@ -14,21 +14,27 @@
 
 class String{
 public:
-	char word;
-	char *p;
-	String(char *p = "") : p(p) {}
+	char *ptr;
+	//String(char *ptr = "") : ptr(ptr) {}
+	//String() : ptr(new char){
+	//	
+	//	//ptr = new char;
+	//	ptr = "";
+	//}
 
-	bool operator== (const String &rhs) const{
-		return (p == rhs.p);
+	String(){
+		ptr = new char[];
+		ptr = "";
 	}
+
+
 
 	//String(const String& rhs){
 	//	*p = *rhs.p;
 	//}
+	
 	//String(const char* cstr);
-	//String& operator=(const String& rhs);
-	//String& operator=(const char* cstr);
-	//String& operator=(char ch);
+
 
 	/*
 	indexerar med range check “Bounds checking is
@@ -82,10 +88,27 @@ public:
 	*/
 	//void resize(int n);
 
+	bool operator== (const String &rhs) const{
+		return (*this == rhs);
+	}
+
+	//String& operator=(const String& rhs){
+	//	if (this != rhs){
+	//		//		delete ptr;
+	//		ptr = rhs.ptr;
+	//	}
+	//	return *this;
+	//}
+	//String& operator=(const char* cstr);
+	//String& operator=(char ch);
+
 	/*
 	tolkas som konkatenering.
 	*/
-	//String& operator+=(const String& rhs);
+	//String& operator+=(const String& rhs){
+	//	ptr = ptr + *rhs.ptr;
+	//	return String(ptr);
+	//}
 
 	/*
 	tolkas som konkatenering.
@@ -110,7 +133,9 @@ public:
 
 
 	~String(){
-		//delete p;
+		//delete ptr;
+		
+		
 	}
 
 };

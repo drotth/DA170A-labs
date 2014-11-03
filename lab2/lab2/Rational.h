@@ -23,8 +23,8 @@ public:
 		Reduce(P, Q);
 	}
 
-	template <typename rat>
-	Rational(Rational<rat> R) : P(R.P), Q(R.Q) {}
+	//template <typename rat>
+	//Rational(Rational<rat> R) : P(R.P), Q(R.Q) {}
 
 	bool operator== (const Rational rhs) const{
 		return (P == rhs.P && Q == rhs.Q);
