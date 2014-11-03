@@ -25,14 +25,15 @@ void TestFörGodkäntString() {
 	
 
 	//-	String(Sträng sträng)
-	//String s1("foo"); assert(s1=="foo");
-	//String s2(s1); assert(s2=="foo");
-	//String s3("bar");  assert(s3=="bar");
+	String s1("foo"); assert(s1=="foo");
+	String s2(s1); assert(s2=="foo");
+	String s3("bar");  assert(s3=="bar");
 
 	//-	~String() Kom ihåg destruktorn!
-	//delete new String("hej");
+	delete new String("hej");
 
 	//	-	operator =(Sträng sträng)
+	//s2 = s3;
 	//assert((s2=s3)==s3);
 	//assert((s2=s2)==s3);
 	//assert((s2=("foo"))=="foo");

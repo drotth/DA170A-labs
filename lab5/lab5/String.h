@@ -22,18 +22,20 @@ public:
 	//	ptr = "";
 	//}
 
-	String(){
-		ptr = new char[];
-		ptr = "";
+	String(char *ptr = "") : ptr(new char){
+		//ptr = new char;
+		//ptr = "";
 	}
 
 
 
-	//String(const String& rhs){
-	//	*p = *rhs.p;
-	//}
+	String(const String& rhs) : ptr(new char(*rhs.ptr)){
+		
+	}
 	
-	//String(const char* cstr);
+	//String(const char* cstr) {
+
+	//}
 
 
 	/*
@@ -89,15 +91,15 @@ public:
 	//void resize(int n);
 
 	bool operator== (const String &rhs) const{
-		return (*this == rhs);
+		return (*ptr == *rhs.ptr);
 	}
 
 	//String& operator=(const String& rhs){
 	//	if (this != rhs){
-	//		//		delete ptr;
+	//		delete ptr;
 	//		ptr = rhs.ptr;
 	//	}
-	//	return *this;
+	//return *this;
 	//}
 	//String& operator=(const char* cstr);
 	//String& operator=(char ch);
@@ -133,9 +135,7 @@ public:
 
 
 	~String(){
-		//delete ptr;
-		
-		
+		delete ptr;
 	}
 
 };
