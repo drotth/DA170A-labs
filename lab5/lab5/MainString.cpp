@@ -33,19 +33,19 @@ void TestFörGodkäntString() {
 	delete new String("hej");
 
 	//	-	operator =(Sträng sträng)
-	/*
-	assert((s2=s3)==s3);
-	assert((s2=s2)==s3);
-	assert((s2=("foo"))=="foo");
-	assert((s2="bar")=="bar");
-	*/
+	//s2 = s3;
+	//assert((s2=s3)==s3);
+	//assert((s2=s2)==s3);
+	//assert((s2=("foo"))=="foo");
+	//assert((s2="bar")=="bar");
+	
 
 	//-	operator+=(Sträng sträng) som tolkas som konkatenering.
 	//foo, bar, bar
-	/*
-	(s2+=s1)+=(s3+=s1);
-	assert(s3=="barfoo" && s2=="barfoobarfoo" && s1=="foo");
-	*/
+	
+	/*(s2+=s1)+=(s3+=s1);*/
+	//assert(s3=="barfoo" && s2=="barfoobarfoo" && s1=="foo");
+	
 
 	//+= som får plats;
 	/*
@@ -192,5 +192,5 @@ int main() {
 	_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
 	TestFörGodkäntString();
 	//TestFörVälGodkäntString();
-	cin.get();
+	//cin.get();
 }
