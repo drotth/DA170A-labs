@@ -60,8 +60,6 @@ void ForwardSort(ForwardIterator begin, ForwardIterator end) {
 	}
 }
 
-
-
 void uppg2() {
 	vector<float> vec;
 	C<10> c_obj;
@@ -127,7 +125,6 @@ void uppg3b() {
 
 void uppg4() {
 	vector<float*> vec;
-	//C<10> c_obj;
 	float point;
 	for (int i = 0; i < 10; ++i) {
 		point = (float)rand();
