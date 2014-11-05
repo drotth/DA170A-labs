@@ -33,26 +33,26 @@ void TestFörGodkäntString() {
 	delete new String("hej");
 
 	//	-	operator =(Sträng sträng)
-	//s2 = s3;
-	//assert((s2=s3)==s3);
-	//assert((s2=s2)==s3);
-	//assert((s2=("foo"))=="foo");
-	//assert((s2="bar")=="bar");
+	s2 = s3;
+	assert((s2=s3)==s3);
+	assert((s2=s2)==s3);
+	assert((s2=("foo"))=="foo");
+	assert((s2="bar")=="bar");
 	
 
 	//-	operator+=(Sträng sträng) som tolkas som konkatenering.
 	//foo, bar, bar
 	
-	/*(s2+=s1)+=(s3+=s1);*/
-	//assert(s3=="barfoo" && s2=="barfoobarfoo" && s1=="foo");
+	(s2+=s1)+=(s3+=s1);
+	assert(s3=="barfoo" && s2=="barfoobarfoo" && s1=="foo");
 	
 
 	//+= som får plats;
-	/*
-	s3="bar"; s3.reserve(10);
-	s3+=s1;
-	assert(s3=="barfoo");
-	*/
+	
+	//s3="bar"; s3.reserve(10);
+	//s3+=s1;
+	//assert(s3=="barfoo");
+	
 
 	//+= som inte får plats;
 	/*
@@ -76,32 +76,29 @@ void TestFörGodkäntString() {
 	*/
 
 	//-	operator+ räcker med bara String+String
-	/*
 	s2="bar";
-	*/
-	//auto sss=s1+s2;
-	//sss=="foobar";
-	//assert(sss=="foobar");
-	////assert(s1+s2=="foobar" && s1=="foo");
-	/*
+	
+	auto sss=s1+s2;
+	sss=="foobar";
+	assert(sss=="foobar");
 	assert(s1+s2=="foobar" && s1=="foo");
-	*/
+	assert(s1+s2=="foobar" && s1=="foo");
+	
 
 	//-	operator== räcker med String==Sträng
 	//testas överallt!
 
 	//-	at(int i) som indexerar med range check
-	/*
-	try {
-	s2.at(-1);
-	assert(false);
-	} catch (std::out_of_range&) {};
-	try {
-	s2.at(3);
-	assert(false);
-	} catch (std::out_of_range&) {};
-	assert(s2.at(2)='r');
-	*/
+	//try {
+	//	s2.at(-1);
+	//	assert(false);
+	//} catch (std::out_of_range&) {};
+	//try {
+	//	s2.at(3);
+	//	assert(false);
+	//} catch (std::out_of_range&) {};
+	//	assert(s2.at(2)='r');
+
 
 	//-	operator[](int i) som indexerar utan range check.
 	/*
