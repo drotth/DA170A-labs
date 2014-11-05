@@ -9,18 +9,34 @@
 #endif
 #endif
 
-
+#include "RelOps.h"
 #include <iostream>
 
 class String{
 public:
+	char *ptr;
+	//String(char *ptr = "") : ptr(ptr) {}
+	//String() : ptr(new char){
+	//	
+	//	//ptr = new char;
+	//	ptr = "";
+	//}
 
-	String();
-	//String(const String& rhs);
-	//String(const char* cstr);
-	//String& operator=(const String& rhs);
-	//String& operator=(const char* cstr);
-	//String& operator=(char ch);
+	String(char *ptr = "") : ptr(new char){
+		//ptr = new char;
+		//ptr = "";
+	}
+
+
+
+	String(const String& rhs) : ptr(new char(*rhs.ptr)){
+		
+	}
+	
+	//String(const char* cstr) {
+
+	//}
+
 
 	/*
 	indexerar med range check “Bounds checking is
@@ -74,10 +90,27 @@ public:
 	*/
 	//void resize(int n);
 
+	bool operator== (const String &rhs) const{
+		return (*ptr == *rhs.ptr);
+	}
+
+	//String& operator=(const String& rhs){
+	//	if (this != rhs){
+	//		delete ptr;
+	//		ptr = rhs.ptr;
+	//	}
+	//return *this;
+	//}
+	//String& operator=(const char* cstr);
+	//String& operator=(char ch);
+
 	/*
 	tolkas som konkatenering.
 	*/
-	//String& operator+=(const String& rhs);
+	//String& operator+=(const String& rhs){
+	//	ptr = ptr + *rhs.ptr;
+	//	return String(ptr);
+	//}
 
 	/*
 	tolkas som konkatenering.
@@ -101,7 +134,9 @@ public:
 	//friend std:: ostream& operator<< (std::ostream&cout, String in);
 
 
-	~String();
+	~String(){
+		delete ptr;
+	}
 
 };
 
