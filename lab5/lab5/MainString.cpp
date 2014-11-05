@@ -49,9 +49,10 @@ void TestFörGodkäntString() {
 
 	//+= som får plats;
 	
-	//s3="bar"; s3.reserve(10);
-	//s3+=s1;
-	//assert(s3=="barfoo");
+	s3="bar"; 
+	s3.reserve(10);
+	s3+=s1;
+	assert(s3=="barfoo");
 	
 
 	//+= som inte får plats;

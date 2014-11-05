@@ -42,12 +42,6 @@ public:
 	}
 
 	String& operator+=(const String& rhs){
-		//char *temp = (char*)malloc(strlen(ptr) + strlen(rhs.ptr) + 1);
-		//*temp += *ptr;
-		//*temp += *rhs.ptr;
-		////*ptr += *rhs.ptr;
-		//ptr = temp;
-		//free(temp);
 		*ptr + *rhs.ptr;
 		return *this;
 	}
@@ -63,6 +57,23 @@ public:
 
 	String& operator+(char* cstr){
 		return operator+=(cstr);
+	}
+
+	void reserve(int amnt){
+		char temp[10];
+		int i = 0;
+		for (i; (i < amnt && ptr[i] != '\0') ; ++i){
+			temp[i] = ptr[i];
+		}
+		if (i < amnt){
+			temp[i] = '\0';
+		}
+
+
+		//temp[0] += *ptr;
+		//*temp += *rhs.ptr;
+		////*ptr += *rhs.ptr;
+		ptr = temp;
 	}
 
 	~String(){
