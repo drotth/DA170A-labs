@@ -115,28 +115,30 @@ void TestFörGodkäntString() {
 	s2.shrink_to_fit();
 	//assert(s2.length()==s2.capacity());
 
+
 	
-	s2.data();
-	if(s2.length()==s2.capacity()) {
-		//lagrar strängen med \0
-		const char * p1 = s2.data();
-		s2.reserve(len); assert(p1==s2.data()); //no change
-		p1= s2.data(); s2.reserve(len+1); assert(p1!=s2.data()); //change
-		p1= s2.data(); s2.shrink_to_fit();  assert(p1!=s2.data()); //change
-		p1= s2.data(); s2.shrink_to_fit();  assert(p1==s2.data()); //no change
-	} else {
-		//lagrar strängen utan \0
-		int cap;
-		s2.data(); cap=s2.capacity(); s2.shrink_to_fit(); assert(cap!=s2.capacity()); //change
-		cap=s2.capacity(); s2.data(); assert(cap!=s2.capacity()); //change
-		s2.shrink_to_fit(); cap=s2.capacity(); s2.reserve(len); assert(cap==s2.capacity()); //change
-		s2.reserve(len+1); assert(cap!=s2.capacity()); //change
-	}
+	//s2.data();
+	//if(s2.length()==s2.capacity()) {
+	//	//lagrar strängen med \0
+	//	const char * p1 = s2.data();
+	//	s2.reserve(len); assert(p1==s2.data()); //no change
+	//	p1= s2.data(); s2.reserve(len+1); assert(p1!=s2.data()); //change
+	//	p1= s2.data(); s2.shrink_to_fit();  assert(p1!=s2.data()); //change
+	//	p1= s2.data(); s2.shrink_to_fit();  assert(p1==s2.data()); //no change
+	//} else {
+	//	//lagrar strängen utan \0
+	//	int cap;
+	//	s2.data(); cap=s2.capacity(); s2.shrink_to_fit(); assert(cap!=s2.capacity()); //change
+	//	cap=s2.capacity(); s2.data(); assert(cap!=s2.capacity()); //change
+	//	s2.shrink_to_fit(); cap=s2.capacity(); s2.reserve(len); assert(cap==s2.capacity()); //change
+	//	s2.reserve(len+1); assert(cap!=s2.capacity()); //change
+	//}
 	
 
 	//-	const char* c_str()
 	//tested above!
 
+	std::cout << s2;
 }
 
 void TestFörVälGodkäntString() {
@@ -184,5 +186,5 @@ int main() {
 	_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
 	TestFörGodkäntString();
 	//TestFörVälGodkäntString();
-	//cin.get();
+	cin.get();
 }

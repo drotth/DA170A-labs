@@ -153,12 +153,11 @@ public:
 		char temp = *ptr;
 		return &temp;
 	}
-
+	
 	friend std::ostream& operator<< (std::ostream &cout, const String& rhs){
 		string temp_string = (string)rhs.ptr;
 		cout << temp_string << endl;
 		return cout;
-	}
 
 	~String(){ 
 		//int i = 0;
@@ -168,6 +167,59 @@ public:
 		//	delete &ptr[j];
 		
 		//delete[] ptr;
+	}
+
+
+
+
+
+
+	////////////////////////////////////////////////////////
+	////////				Lab6					////////
+	////////////////////////////////////////////////////////
+	typedef int iterator;
+	typedef int const_iterator;
+	typedef int reverse_iterator;
+	typedef int const_reverse_iterator;
+
+	int begin(){
+		int i = 0;
+		return i;
+	}
+
+	int end(){
+		int i = 0;
+		return i;
+	}
+
+	int cbegin(){
+		int i = 0;
+		return i;
+	}
+
+	int cend(){
+		int i = 0;
+		return i;
+	}
+
+	int rbegin(){
+		int i = 0;
+		return
+	}
+
+	int rend(){
+		int i = 0;
+		return
+	}
+
+	int crbegin(){
+		int i = 0;
+		return
+	}
+
+	int crend(){
+		int i = 0;
+		return
 	}
 
 };
