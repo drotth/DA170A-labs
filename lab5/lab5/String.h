@@ -4,16 +4,31 @@
 #include "RelOps.h"
 #include <iostream>
 #include <stdlib.h>
+#include <string>
 
 class String{
 public:
 	char *ptr;
 
-	String(char *input = "") : ptr(input){	}
+	String(char *input = ""){	
+		const size_t length = strlen(input);
+		ptr = new char[length];
+		*ptr = *input;
+	}
 
-	String(const String& rhs) : ptr(rhs.ptr){	}
+	String(const String& rhs){
+		const size_t length = strlen(rhs.ptr);
+		//delete ptr;
+		ptr = new char[length];
+		ptr = rhs.ptr;
+	}
 
-	String(const char* cstr) : ptr((char*)cstr)  {	}
+	String(const char* cstr) : ptr((char*)cstr)  {
+		const size_t length = strlen(cstr);
+		//delete ptr;
+		ptr = new char[length];
+		ptr = (char*)cstr;
+	}
 
 	bool operator== (const String &rhs){
 		return (*ptr == *rhs.ptr);
@@ -21,6 +36,9 @@ public:
 
 	String& operator=(const String& rhs){
 		if (ptr != rhs.ptr){
+			const size_t length = strlen(rhs.ptr);
+			ptr = new char[length];
+			//delete ptr;
 			ptr = rhs.ptr;
 		}
 		return *this;
@@ -29,6 +47,9 @@ public:
 
 	String& operator=(const char* cstr){
 		if (ptr != cstr){
+			const size_t length = strlen(cstr);
+			ptr = new char[length];
+			//delete ptr;
 			ptr = (char*)cstr;
 		}
 		return *this;
@@ -36,6 +57,8 @@ public:
 
 	String& operator=(char ch){
 		if (*ptr != ch){
+			ptr = new char[1];
+			delete ptr;
 			*ptr = ch;
 		}
 		return *this;
@@ -68,16 +91,77 @@ public:
 		if (i < amnt){
 			temp[i] = '\0';
 		}
-
-
-		//temp[0] += *ptr;
-		//*temp += *rhs.ptr;
-		////*ptr += *rhs.ptr;
-		ptr = temp;
+		*ptr = *temp;
 	}
 
-	~String(){
+	char& at(int i){
+		char ret = ptr[i];
+		return ret;
+	}
+
+	char& operator[](int i){
+		char ret;
+		if (i < 0){
+			ret = '\0';
+		}
+		else {
+			ret = ptr[i];
+		}
+		return ret;
+	}
+
+	void push_back(char c){
+		&ptr + c;
+	}
+
+	int length() const{
+		//int i = 0;
+		//while (ptr[i] != '\0'){
+		//	++i;
+		//}
+		//return i+1;
+		
+		
+		string temp = (string)ptr;
+		int i = temp.length();
+		return temp.length();
+		
+	}
+
+	void shrink_to_fit(){
+		string temp_string = (string)ptr;
+		int length = temp_string.size();
+
 		//delete ptr;
+		ptr = new char[length];
+		for (int i = 0; i < length; ++i){
+			ptr[i] = temp_string[i];
+		}
+		//char temp_char[(length+1)];
+		//temp_string.shrink_to_fit();
+		//ptr = *temp;
+	}
+
+	int capacity(){
+		
+		string temp = (string)ptr;
+		int i = temp.capacity();
+		return temp.capacity();
+	}
+
+	const char* data() const{
+		char temp = *ptr;
+		return &temp;
+	}
+
+	~String(){ 
+		//int i = 0;
+		//while (ptr[i] != '\0')
+		//	++i;
+		//for (int j = 0; j < i; ++j)
+		//	delete &ptr[j];
+		
+		//delete[] ptr;
 	}
 
 };
