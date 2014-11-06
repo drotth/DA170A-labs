@@ -26,7 +26,7 @@ void TestFörGodkäntString() {
 
 	//-	String(Sträng sträng)
 	String s1("foo"); assert(s1=="foo");
-	String s2(s1); assert(s2=="foo");
+	String s2(s1); 	assert(s2=="foo");
 	String s3("bar");  assert(s3=="bar");
 
 	//-	~String() Kom ihåg destruktorn!
@@ -45,7 +45,8 @@ void TestFörGodkäntString() {
 	
 	(s2+=s1)+=(s3+=s1);
 	assert(s3=="barfoo" && s2=="barfoobarfoo" && s1=="foo");
-	
+	std::cout << s2;
+	std::cin.get();
 
 	//+= som får plats;
 	
@@ -87,11 +88,11 @@ void TestFörGodkäntString() {
 	//-	at(int i) som indexerar med range check
 	try {
 		s2.at(-1);
-		//assert(false);
+		assert(false);	
 	} catch (std::out_of_range&) {};
 	try {
 		s2.at(3);
-		//assert(false);
+		assert(false);
 	} catch (std::out_of_range&) {};
 		assert(s2.at(2)='r');
 
@@ -108,26 +109,26 @@ void TestFörGodkäntString() {
 
 	int len=s2.length();
 	s2.shrink_to_fit();
-	//assert(s2.length()==s2.capacity());
+	assert(s2.length()==s2.capacity());
 
 
 	
-	//s2.data();
-	//if(s2.length()==s2.capacity()) {
-	//	//lagrar strängen med \0
-	//	const char * p1 = s2.data();
-	//	s2.reserve(len); assert(p1==s2.data()); //no change
-	//	p1= s2.data(); s2.reserve(len+1); assert(p1!=s2.data()); //change
-	//	p1= s2.data(); s2.shrink_to_fit();  assert(p1!=s2.data()); //change
-	//	p1= s2.data(); s2.shrink_to_fit();  assert(p1==s2.data()); //no change
-	//} else {
-	//	//lagrar strängen utan \0
-	//	int cap;
-	//	s2.data(); cap=s2.capacity(); s2.shrink_to_fit(); assert(cap!=s2.capacity()); //change
-	//	cap=s2.capacity(); s2.data(); assert(cap!=s2.capacity()); //change
-	//	s2.shrink_to_fit(); cap=s2.capacity(); s2.reserve(len); assert(cap==s2.capacity()); //change
-	//	s2.reserve(len+1); assert(cap!=s2.capacity()); //change
-	//}
+	s2.data();
+	if(s2.length()==s2.capacity()) {
+		//lagrar strängen med \0
+		const char * p1 = s2.data();
+		s2.reserve(len); assert(p1==s2.data()); //no change
+		p1= s2.data(); s2.reserve(len+1); assert(p1!=s2.data()); //change
+		p1= s2.data(); s2.shrink_to_fit();  assert(p1!=s2.data()); //change
+		p1= s2.data(); s2.shrink_to_fit();  assert(p1==s2.data()); //no change
+	} else {
+		//lagrar strängen utan \0
+		int cap;
+		s2.data(); cap=s2.capacity(); s2.shrink_to_fit(); assert(cap!=s2.capacity()); //change
+		cap=s2.capacity(); s2.data(); assert(cap!=s2.capacity()); //change
+		s2.shrink_to_fit(); cap=s2.capacity(); s2.reserve(len); assert(cap==s2.capacity()); //change
+		s2.reserve(len+1); assert(cap!=s2.capacity()); //change
+	}
 	
 
 	//-	const char* c_str()
@@ -181,5 +182,5 @@ int main() {
 	_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
 	TestFörGodkäntString();
 	//TestFörVälGodkäntString();
-	cin.get();
+	//cin.get();
 }

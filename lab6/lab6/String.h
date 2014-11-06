@@ -192,12 +192,12 @@ public:
 		return i;
 	}
 
-	int cbegin(){
+	const int cbegin(){
 		int i = 0;
 		return i;
 	}
 
-	int cend(){
+	const int cend(){
 		int i = 0;
 		return i;
 	}
@@ -212,12 +212,12 @@ public:
 		return
 	}
 
-	int crbegin(){
+	const int crbegin(){
 		int i = 0;
 		return
 	}
 
-	int crend(){
+	const int crend(){
 		int i = 0;
 		return
 	}
