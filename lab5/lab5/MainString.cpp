@@ -49,32 +49,27 @@ void TestFörGodkäntString() {
 
 	//+= som får plats;
 	
-	//s3="bar"; 
-	//s3.reserve(10);
-	//s3+=s1;
-	//assert(s3=="barfoo");
+	s3="bar"; 
+	s3.reserve(10);
+	s3+=s1;
+	assert(s3=="barfoo");
 	
 
 	//+= som inte får plats;
-	/*
+	
 	s3="bar"; s3.reserve(5);
 	s3+=s1;
 	assert(s3=="barfoo");
-	*/
 
 	//+= som får plats; Själv
-	/*
 	s3="bar"; s3.reserve(10);
 	s3+=s3;
 	assert(s3=="barbar");
-	*/
 
 	//+= som inte får plats; Själv
-	/*
 	s3="bar"; s3.reserve(5);
 	s3+=s3;
 	assert(s3=="barbar");
-	*/
 
 	//-	operator+ räcker med bara String+String
 	s2="bar";
@@ -138,7 +133,7 @@ void TestFörGodkäntString() {
 	//-	const char* c_str()
 	//tested above!
 
-	std::cout << s2;
+	std::cout << s3;
 }
 
 void TestFörVälGodkäntString() {

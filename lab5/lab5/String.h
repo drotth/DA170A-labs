@@ -10,22 +10,26 @@ class String{
 public:
 	char *ptr;
 
-	String(char *input = ""){	
+	/*String(char *input = ""){	
 		const size_t length = strlen(input);
 		ptr = new char[length];
 		*ptr = *input;
 	}
+	*/
+
+	String(){
+		ptr = new char[1];
+		ptr = "";
+	}
 
 	String(const String& rhs){
 		const size_t length = strlen(rhs.ptr);
-		//delete ptr;
 		ptr = new char[length];
 		ptr = rhs.ptr;
 	}
 
 	String(const char* cstr) : ptr((char*)cstr)  {
 		const size_t length = strlen(cstr);
-		//delete ptr;
 		ptr = new char[length];
 		ptr = (char*)cstr;
 	}
@@ -37,8 +41,8 @@ public:
 	String& operator=(const String& rhs){
 		if (ptr != rhs.ptr){
 			const size_t length = strlen(rhs.ptr);
-			ptr = new char[length];
 			//delete ptr;
+			ptr = new char[length];
 			ptr = rhs.ptr;
 		}
 		return *this;
@@ -48,8 +52,8 @@ public:
 	String& operator=(const char* cstr){
 		if (ptr != cstr){
 			const size_t length = strlen(cstr);
-			ptr = new char[length];
 			//delete ptr;
+			ptr = new char[length];
 			ptr = (char*)cstr;
 		}
 		return *this;
@@ -57,8 +61,8 @@ public:
 
 	String& operator=(char ch){
 		if (*ptr != ch){
+			//delete ptr;
 			ptr = new char[1];
-			delete ptr;
 			*ptr = ch;
 		}
 		return *this;
@@ -83,15 +87,25 @@ public:
 	}
 
 	void reserve(int amnt){
-		char temp[10];
-		int i = 0;
-		for (i; (i < amnt && ptr[i] != '\0') ; ++i){
-			temp[i] = ptr[i];
+		//char temp[10];
+		//int i = 0;
+		//for (i; (i < amnt && ptr[i] != '\0') ; ++i){
+		//	temp[i] = ptr[i];
+		//}
+		//if (i < amnt){
+		//	temp[i] = '\0';
+		//}
+		//*ptr = *temp;
+
+		string temp = (string)ptr;
+		int length = temp.size();
+		temp.reserve(amnt);
+		//delete ptr;
+		ptr = new char[amnt];
+		for (int i = 0; i < length; ++i){
+			ptr[i] = temp[i];
 		}
-		if (i < amnt){
-			temp[i] = '\0';
-		}
-		*ptr = *temp;
+
 	}
 
 	char& at(int i){
@@ -149,7 +163,7 @@ public:
 		return temp.capacity();
 	}
 
-	const char* data() const{
+	const char* data() const{						//Gör vad?
 		char temp = *ptr;
 		return &temp;
 	}
@@ -168,6 +182,8 @@ public:
 		//	delete &ptr[j];
 		
 		//delete[] ptr;
+
+		//delete ptr;
 	}
 
 };
