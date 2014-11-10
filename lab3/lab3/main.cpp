@@ -10,23 +10,24 @@
 
 #include "lab3.h"
 
-
 int main() {
 	srand(time(0));
-	cout << "Uppgift 1" << endl << endl << endl;
+	
+	cout << "Uppgift 1: ---------------------------------------------------------" << endl;
 	uppg1();
 	
-	cout << endl << "Uppgift 2" << endl << endl << endl;
+	cout << "Uppgift 2: ---------------------------------------------------------" << endl;
 	uppg2();
 	
-	cout << endl << "Uppgift 3a" << endl << endl << endl;
+	cout << "Uppgift 3a: ---------------------------------------------------------" << endl;
 	uppg3a();
 	
-	cout << endl << "Uppgift 3b" << endl << endl << endl;
+	cout << "Uppgift 3b: ---------------------------------------------------------" << endl;
 	uppg3b();
 	
-	cout << endl << "Uppgift 4" << endl << endl << endl;
+	cout << "Uppgift 4: ---------------------------------------------------------" << endl;
 	uppg4();
+
 	cin.get();
 	_CrtDumpMemoryLeaks();
 }
