@@ -10,42 +10,24 @@
 
 #include "lab3.h"
 
-void printline(int number)
-{
-	if (number == 3){
-		cout << endl << "Uppgift 3a:";
-	} 
-	else if (number == 4){
-		cout << endl << "Uppgift 3b:";
-	}
-	else if (number == 5){
-		cout << endl << "Uppgift 4";
-	}
-	else{
-		cout << endl << "Uppgift " << number << " :";
-	}
-	
-	cout << endl<< "-------------------------------------------------------------------" << endl;
-}
-
 int main() {
-	int number = 0;
 	srand(time(0));
-	printline(++number);
 	
+	cout << "Uppgift 1: ---------------------------------------------------------" << endl;
 	uppg1();
 	
-	printline(++number);
+	cout << "Uppgift 2: ---------------------------------------------------------" << endl;
 	uppg2();
 	
-	printline(++number);
+	cout << "Uppgift 3a: ---------------------------------------------------------" << endl;
 	uppg3a();
 	
-	printline(++number);
-	uppg3b();	//lambda function not working correctly
+	cout << "Uppgift 3b: ---------------------------------------------------------" << endl;
+	uppg3b();
 	
-	printline(++number);
+	cout << "Uppgift 4: ---------------------------------------------------------" << endl;
 	uppg4();
+
 	cin.get();
 	_CrtDumpMemoryLeaks();
 }
