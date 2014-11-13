@@ -4,7 +4,6 @@
 #include "RelOps.h"
 #include <iostream>
 #include <stdlib.h>
-//#include <string>
 
 class String{
 public:
@@ -116,45 +115,24 @@ public:
 	}
 
 	String operator+(String const rhs) const{
-		//int temp_size = size + rhs.size;
-		//char* temp = new char[temp_size + 1];
-		//memcpy(temp, string_ptr, (size + 1));
-		//memcpy((temp + size), rhs.string_ptr, (temp_size + 1));
-		//temp[temp_size] = '\0';
-		//return temp;
-		/*delete[] string_ptr;
-		string_ptr = temp;
-		size = temp_size;
-		cap = size + 1;
-		string_ptr[size] = '\0';*/
-		//return *this;
-
-
-		//int temp_size = size + rhs.size;
-		//char* temp = new char[temp_size];
-		//memcpy(temp, string_ptr, (size + 1));
-		//memcpy((temp + size), rhs.string_ptr, (temp_size + 1));
-		//temp[temp_size] = '\0';
-		//String(temp);
-
-		//char* temp = new char[temp_size];
-		//memcpy(temp, string_ptr, (size + 1));
-		//memcpy((temp + size), rhs.string_ptr, (temp_size + 1));
-		//temp[temp_size] = '\0';
-		//return String(*string_ptr + rhs.string_ptr);
-		//cap = size + 1;
-		//*string_ptr + *rhs.string_ptr;
-		//return *this;
-
-		//char result[10];
-		//strcpy_s(result, string_ptr);
-		//strcat_s(result, rhs.string_ptr);
-		//String(result);
+		int temp_size = size + rhs.size;
+		char* temp = new char[temp_size + 1];
+		memcpy(temp, string_ptr, (size + 1));
+		memcpy((temp + size), rhs.string_ptr, (temp_size + 1));
+		String s = String(temp);
+		delete[] temp;
+		return s;
 	}
 
-	//String& operator+(char* cstr){
-	//	return operator+=(cstr);
-	//}
+	String& operator+(char* cstr){
+		int temp_size = size + strlen(cstr);
+		char* temp = new char[temp_size + 1];
+		memcpy(temp, string_ptr, (size + 1));
+		memcpy((temp + size), cstr, (temp_size + 1));
+		String s = String(temp);
+		delete[] temp;
+		return s;
+	}
 
 	void reserve(int amnt){
 		if (amnt > cap){

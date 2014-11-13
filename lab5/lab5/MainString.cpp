@@ -42,12 +42,10 @@ void TestFörGodkäntString() {
 
 	//-	operator+=(Sträng sträng) som tolkas som konkatenering.
 	//foo, bar, bar
-	
 	(s2+=s1)+=(s3+=s1);
 	assert(s3=="barfoo" && s2=="barfoobarfoo" && s1=="foo");
 
 	//+= som får plats;
-	
 	s3="bar"; 
 	s3.reserve(10);
 	s3+=s1;
@@ -55,7 +53,6 @@ void TestFörGodkäntString() {
 	
 
 	//+= som inte får plats;
-	
 	s3="bar"; s3.reserve(5);
 	s3+=s1;
 	assert(s3=="barfoo");
@@ -72,10 +69,10 @@ void TestFörGodkäntString() {
 
 	//-	operator+ räcker med bara String+String
 	s2="bar";
-	//String sss=s1+s2;
-	//sss=="foobar";
-	//assert(sss=="foobar");
-	//assert(s1+s2=="foobar" && s1=="foo");
+	String sss=s1+s2;
+	sss=="foobar";
+	assert(sss=="foobar");
+	assert(s1+s2=="foobar" && s1=="foo");
 	//assert(s1+s2=="foobar" && s1=="foo");
 	
 
@@ -103,7 +100,6 @@ void TestFörGodkäntString() {
 	assert(s2=="bara");
 
 	//-	length(), reserve(), capacity() och shrink_to_fit() är funktioner som finns i container klasserna i STL.
-
 	int len=s2.length();
 	s2.shrink_to_fit();
 	assert(s2.length()==s2.capacity());	
