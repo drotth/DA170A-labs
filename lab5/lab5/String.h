@@ -4,173 +4,219 @@
 #include "RelOps.h"
 #include <iostream>
 #include <stdlib.h>
-#include <string>
+//#include <string>
 
 class String{
 public:
-	char *ptr;
+	char *string_ptr;
 	int size, cap;
 
 	String(){
-		ptr = new char[1];
-		ptr[0] = '\n';
+		string_ptr = new char[1];
+		string_ptr[0] = '\n';
 		size = 0;
-		cap = 1;
+		cap = 0;
 	}
 
-	String(const String& rhs){
+	String(const String &rhs){
 		size = rhs.size;
 		cap = rhs.cap;
-		char* temp = new char[size+1];
-		memcpy(temp, rhs.ptr, sizeof(rhs.ptr[0])* rhs.size);
-		delete ptr;
-		ptr = temp;
-		ptr[size] = '\0';
-		//delete temp;
+		string_ptr  = new char[size+1];
+		memcpy(string_ptr, rhs.string_ptr, (size+1));
+		string_ptr[size] = '\0';
 	}
 
-	String(const char* cstr)  {
+	String(const char* cstr){
 		size = strlen(cstr);
-		cap = size + 1;
-		ptr = new char[cap];
-		memcpy(ptr, cstr, sizeof(cstr)* size);
-		ptr[size] = '\0';
+		cap = size;
+		string_ptr = new char[size+1];
+		memcpy(string_ptr, cstr, (size+1));
+		string_ptr[size] = '\0';
 	}
 
-	bool operator== (const String &rhs){
-		bool result(false);
+	~String(){
+		delete[] string_ptr;
+	}
+
+	bool operator==(const String &rhs){
+		bool result = false;
 		if (size == rhs.size){
 			result = true;
 			for (int i = 0; i < size; ++i){
-				if (ptr[i] != rhs.ptr[i]){
-					result = false;
+				if (string_ptr[i] != rhs.string_ptr[i]){
+					return false;
 				}
 			}
 		}
 		return result;
 	}
 
-	String& operator=(const String& rhs){
-		if (ptr != rhs.ptr){
-			size = strlen(rhs.ptr);
-			cap = size + 1;
-			ptr = rhs.ptr;
+	String& operator= (const String& rhs){
+		if (string_ptr != rhs.string_ptr){
+			size = rhs.size;
+			cap = rhs.cap;
+			char* temp = new char[size + 1];
+			delete[] string_ptr;
+			memcpy(temp, rhs.string_ptr, (size+1));
+			string_ptr = temp;
+			string_ptr[size] = '\0';
 		}
 		return *this;
 	}
 
-
-	String& operator=(const char* cstr){
-		if (ptr != cstr){
+	String& operator= (const char* cstr){
+		if (string_ptr != cstr){
 			size = strlen(cstr);
-			cap = size + 1;
-			ptr = (char*)cstr;
+			cap = size;
+			char* temp = new char[size + 1];
+			delete[] string_ptr;
+			memcpy(temp, cstr, (size + 1));
+			string_ptr = temp;
+			string_ptr[size] = '\0';
 		}
 		return *this;
 	}
 
-	String& operator=(char ch){
-		if (*ptr != ch){
+	String& operator= (char ch){
+		if (string_ptr[0] != ch && size > 1){
 			size = 1;
-			cap = size + 1;
-			*ptr = ch;
+			cap = 1;
+			delete[] string_ptr;
+			string_ptr = new char[size + 1];
+			string_ptr[0] = ch;
+			string_ptr[1] = '\0';
 		}
 		return *this;
 	}
 
-	String& operator+=(const String& rhs){
+	String& operator += (const String& rhs){
 		int temp_size = size + rhs.size;
-		char* temp = new char[temp_size+1];
-		memcpy(temp, ptr, sizeof(ptr[0])* size);
-		memcpy(temp+size, rhs.ptr, sizeof(rhs.ptr[0])*rhs.size);
-		delete ptr;
-		ptr = temp;
+		char* temp = new char[temp_size + 1];
+		memcpy(temp, string_ptr, (size + 1));
+		memcpy((temp + size), rhs.string_ptr, temp_size + 1);
+		delete[] string_ptr;
+		string_ptr = temp;
 		size = temp_size;
-		cap = temp_size+1;
-		ptr[temp_size] = '\0';
+		cap = cap + rhs.cap;
+		string_ptr[size] = '\0';
 		return *this;
-
-
-		//*ptr + *rhs.ptr;
-		//return *this;
 	}
 
 	String& operator+=(char* cstr){
-		//size += strlen(cstr);
-		//cap = cap + size + 1;
-		//char* temp = new char[size];
-		//memcpy(temp, cstr, sizeof(rhs.ptr[0])* size);
-		//delete ptr;
-		//ptr = temp;
-		//ptr[size] = '\0';
-		//return *this;
-		size += strlen(cstr);
-		cap = size + 1;
-		*ptr + cstr;
+		int temp_size = size + strlen(cstr);
+		char* temp = new char[temp_size + 1];
+		memcpy(temp, string_ptr, (size + 1));
+		memcpy((temp + size), cstr, (temp_size + 1));
+		delete[] string_ptr;
+		string_ptr = temp;
+		size = temp_size;
+		cap = cap + strlen(cstr);
+		string_ptr[size] = '\0';
 		return *this;
 	}
 
-	String& operator+(const String& rhs){
-		return operator+=(rhs);
+	String operator+(String const rhs) const{
+		//int temp_size = size + rhs.size;
+		//char* temp = new char[temp_size + 1];
+		//memcpy(temp, string_ptr, (size + 1));
+		//memcpy((temp + size), rhs.string_ptr, (temp_size + 1));
+		//temp[temp_size] = '\0';
+		//return temp;
+		/*delete[] string_ptr;
+		string_ptr = temp;
+		size = temp_size;
+		cap = size + 1;
+		string_ptr[size] = '\0';*/
+		//return *this;
+
+
+		//int temp_size = size + rhs.size;
+		//char* temp = new char[temp_size];
+		//memcpy(temp, string_ptr, (size + 1));
+		//memcpy((temp + size), rhs.string_ptr, (temp_size + 1));
+		//temp[temp_size] = '\0';
+		//String(temp);
+
+		//char* temp = new char[temp_size];
+		//memcpy(temp, string_ptr, (size + 1));
+		//memcpy((temp + size), rhs.string_ptr, (temp_size + 1));
+		//temp[temp_size] = '\0';
+		//return String(*string_ptr + rhs.string_ptr);
+		//cap = size + 1;
+		//*string_ptr + *rhs.string_ptr;
+		//return *this;
+
+		//char result[10];
+		//strcpy_s(result, string_ptr);
+		//strcat_s(result, rhs.string_ptr);
+		//String(result);
 	}
 
-	String& operator+(char* cstr){
-		return operator+=(cstr);
-	}
+	//String& operator+(char* cstr){
+	//	return operator+=(cstr);
+	//}
 
 	void reserve(int amnt){
-		char* temp=new char[amnt];
-		memcpy(temp, ptr, sizeof(ptr[0])* size<amnt?size:amnt );
-		delete[] ptr;
-		ptr = temp;
-		//delete temp;
+		if (amnt > cap){
+			char* temp = new char[amnt];
+			memcpy(temp, string_ptr, amnt);
+			delete[] string_ptr;
+			string_ptr = temp;
+			string_ptr[size] = '\0';
+			cap = amnt;
 		}
+	}
 
 	char& at(int i){
-		if (i < 0 || i > size){
+		if (i < 0 || i >= size){
 			throw out_of_range("error");
 		}
 		else{
-			return ptr[i];
+			return string_ptr[i];
 		}
 	}
 
 	char& operator[](int i){
-		return ptr[i];
+		return string_ptr[i];
 	}
 
-	void push_back(char c){
-		*ptr + c;
+	void push_back(const char c){
+		char* temp = new char[size + 2];
+		memcpy(temp, string_ptr, (size + 1));
+		temp[size] = c;
+		delete[] string_ptr;
+		string_ptr = temp;
 		size += 1;
 		cap += 1;
+		string_ptr[size] = '\0';
 	}
 
 	int length() const{
-		return size;		
+		return size;
 	}
 
-	void shrink_to_fit(){
-		char* temp = new char[cap];
-		memcpy(temp, ptr, sizeof(ptr[0])* size);
-		//delete ptr;
-		ptr = temp;
-	}
-
-	int capacity(){
+	int capacity() const{
 		return cap;
 	}
 
+	void shrink_to_fit(){
+		if (size < cap){
+			char* temp = new char[size+1];
+			memcpy(temp, string_ptr, (size+1));
+			delete[] string_ptr;
+			string_ptr = temp;
+			string_ptr[size] = '\0';
+			cap = size;
+		}
+	}
+
 	const char* data() const{
-		return ptr;
+		return string_ptr;
 	}
 
 	friend std::ostream& operator<< (std::ostream &cout, const String& rhs){
-		string temp_string = (string)rhs.ptr;
+		string temp_string = (string)rhs.string_ptr;
 		cout << temp_string << endl;
 		return cout;
 	}
-
-	~String(){	}
-
 };
-
