@@ -1,142 +1,200 @@
 #pragma once
-#define _CRTDBG_MAP_ALLOC
-#include <stdlib.h>
-#include <crtdbg.h>
-#ifdef _DEBUG
-#ifndef DBG_NEW
-#define DBG_NEW new ( _NORMAL_BLOCK , __FILE__ , __LINE__ )
-#define new DBG_NEW
-#endif
-#endif
+
 
 #include "RelOps.h"
 #include <iostream>
+#include <stdlib.h>
 
 class String{
 public:
-	char *ptr;
-	//String(char *ptr = "") : ptr(ptr) {}
-	//String() : ptr(new char){
-	//	
-	//	//ptr = new char;
-	//	ptr = "";
-	//}
+	char *string_ptr;
+	int size, cap;
 
-	String(char *ptr = "") : ptr(new char){
-		//ptr = new char;
-		//ptr = "";
+	String(){
+		string_ptr = new char[1];
+		string_ptr[0] = '\n';
+		size = 0;
+		cap = 0;
 	}
 
-
-
-	String(const String& rhs) : ptr(new char(*rhs.ptr)){
-		
-	}
-	
-	//String(const char* cstr) {
-
-	//}
-
-
-	/*
-	indexerar med range check “Bounds checking is
-	performed, exception of type std::out_of_range will be
-	thrown on invalid access.”
-	*/
-	//char& at(int i);
-
-
-	/*
-	indexerar utan range check
-	*/
-	//char& operator[](int i);
-
-
-	/*
-	gives a reference to the internal array holding the string,
-	it must also be null character terminated (meaning that
-	there must be an extra null character last in your array)*/
-	//const char* data() const;
-
-	/*
-	finns i container klasserna i STL, se basic_string
-	*/
-	//int length() const;
-
-	/*
-	finns i container klasserna i STL, se basic_string
-	*/
-	//void reserve(int);
-
-	/*
-	finns i container klasserna i STL, se basic_string
-	*/
-	//int capacity() const;
-
-	/*
-	till skillnad från std så krävs här att utrymmet krymps
-	maximalt så String tar så lite utrymme som möjligt.
-	*/
-	//void shrink_to_fit();
-
-	/*
-	lägger till ett tecken sist
-	*/
-	//void push_back(char c);
-
-	/*
-	Ändrar antalet tecken till n, om n>length så fylls det på
-	med ”char()”
-	*/
-	//void resize(int n);
-
-	bool operator== (const String &rhs) const{
-		return (*ptr == *rhs.ptr);
+	String(const String &rhs){
+		size = rhs.size;
+		cap = rhs.cap;
+		string_ptr  = new char[size+1];
+		memcpy(string_ptr, rhs.string_ptr, (size+1));
+		string_ptr[size] = '\0';
 	}
 
-	//String& operator=(const String& rhs){
-	//	if (this != rhs){
-	//		delete ptr;
-	//		ptr = rhs.ptr;
-	//	}
-	//return *this;
-	//}
-	//String& operator=(const char* cstr);
-	//String& operator=(char ch);
-
-	/*
-	tolkas som konkatenering.
-	*/
-	//String& operator+=(const String& rhs){
-	//	ptr = ptr + *rhs.ptr;
-	//	return String(ptr);
-	//}
-
-	/*
-	tolkas som konkatenering.
-	*/
-	//String& operator+=(char* cstr);
-
-	/*
-	ok med medlemsfunktion
-	*/
-	//String operator+();
-
-	/*
-	global function
-	*/
-	//friend bool operator==(const String& lhs, const String& rhs);
-
-	/*
-	För test: Görs enklast genom att konvertera till
-	std::string och skriva ut den.
-	*/
-	//friend std:: ostream& operator<< (std::ostream&cout, String in);
-
+	String(const char* cstr){
+		size = strlen(cstr);
+		cap = size;
+		string_ptr = new char[size+1];
+		memcpy(string_ptr, cstr, (size+1));
+		string_ptr[size] = '\0';
+	}
 
 	~String(){
-		delete ptr;
+		delete[] string_ptr;
 	}
 
-};
+	bool operator==(const String &rhs){
+		bool result = false;
+		if (size == rhs.size){
+			result = true;
+			for (int i = 0; i < size; ++i){
+				if (string_ptr[i] != rhs.string_ptr[i]){
+					return false;
+				}
+			}
+		}
+		return result;
+	}
 
+	String& operator= (const String& rhs){
+		if (string_ptr != rhs.string_ptr){
+			size = rhs.size;
+			cap = rhs.cap;
+			char* temp = new char[size + 1];
+			delete[] string_ptr;
+			memcpy(temp, rhs.string_ptr, (size+1));
+			string_ptr = temp;
+			string_ptr[size] = '\0';
+		}
+		return *this;
+	}
+
+	String& operator= (const char* cstr){
+		if (string_ptr != cstr){
+			size = strlen(cstr);
+			cap = size;
+			char* temp = new char[size + 1];
+			delete[] string_ptr;
+			memcpy(temp, cstr, (size + 1));
+			string_ptr = temp;
+			string_ptr[size] = '\0';
+		}
+		return *this;
+	}
+
+	String& operator= (char ch){
+		if (string_ptr[0] != ch && size > 1){
+			size = 1;
+			cap = 1;
+			delete[] string_ptr;
+			string_ptr = new char[size + 1];
+			string_ptr[0] = ch;
+			string_ptr[1] = '\0';
+		}
+		return *this;
+	}
+
+	String& operator += (const String& rhs){
+		int temp_size = size + rhs.size;
+		char* temp = new char[temp_size + 1];
+		memcpy(temp, string_ptr, (size + 1));
+		memcpy((temp + size), rhs.string_ptr, temp_size + 1);
+		delete[] string_ptr;
+		string_ptr = temp;
+		size = temp_size;
+		cap = cap + rhs.cap;
+		string_ptr[size] = '\0';
+		return *this;
+	}
+
+	String& operator+=(char* cstr){
+		int temp_size = size + strlen(cstr);
+		char* temp = new char[temp_size + 1];
+		memcpy(temp, string_ptr, (size + 1));
+		memcpy((temp + size), cstr, (temp_size + 1));
+		delete[] string_ptr;
+		string_ptr = temp;
+		size = temp_size;
+		cap = cap + strlen(cstr);
+		string_ptr[size] = '\0';
+		return *this;
+	}
+
+	String operator+(String const rhs) const{
+		int temp_size = size + rhs.size;
+		char* temp = new char[temp_size + 1];
+		memcpy(temp, string_ptr, (size + 1));
+		memcpy((temp + size), rhs.string_ptr, (temp_size + 1));
+		String s = String(temp);
+		delete[] temp;
+		return s;
+	}
+
+	String& operator+(char* cstr){
+		int temp_size = size + strlen(cstr);
+		char* temp = new char[temp_size + 1];
+		memcpy(temp, string_ptr, (size + 1));
+		memcpy((temp + size), cstr, (temp_size + 1));
+		String s = String(temp);
+		delete[] temp;
+		return s;
+	}
+
+	void reserve(int amnt){
+		if (amnt > cap){
+			char* temp = new char[amnt];
+			memcpy(temp, string_ptr, amnt);
+			delete[] string_ptr;
+			string_ptr = temp;
+			string_ptr[size] = '\0';
+			cap = amnt;
+		}
+	}
+
+	char& at(int i){
+		if (i < 0 || i >= size){
+			throw out_of_range("error");
+		}
+		else{
+			return string_ptr[i];
+		}
+	}
+
+	char& operator[](int i){
+		return string_ptr[i];
+	}
+
+	void push_back(const char c){
+		char* temp = new char[size + 2];
+		memcpy(temp, string_ptr, (size + 1));
+		temp[size] = c;
+		delete[] string_ptr;
+		string_ptr = temp;
+		size += 1;
+		cap += 1;
+		string_ptr[size] = '\0';
+	}
+
+	int length() const{
+		return size;
+	}
+
+	int capacity() const{
+		return cap;
+	}
+
+	void shrink_to_fit(){
+		if (size < cap){
+			char* temp = new char[size+1];
+			memcpy(temp, string_ptr, (size+1));
+			delete[] string_ptr;
+			string_ptr = temp;
+			string_ptr[size] = '\0';
+			cap = size;
+		}
+	}
+
+	const char* data() const{
+		return string_ptr;
+	}
+
+	friend std::ostream& operator<< (std::ostream &cout, const String& rhs){
+		string temp_string = (string)rhs.string_ptr;
+		cout << temp_string << endl;
+		return cout;
+	}
+};
