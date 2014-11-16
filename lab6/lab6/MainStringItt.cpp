@@ -134,12 +134,12 @@ void TestFörGodkäntString() {
 	assert(it[2]=='r');									\
 }
 
-/*													Should be fixed
+												//Should be fixed
 MACROTestIttPart(,);	//, ger tomt argument
 MACROTestIttPart(c);
-MACROTestIttPart(r);
-MACROTestIttPart(cr);
-*/
+//MACROTestIttPart(r);
+//MACROTestIttPart(cr);
+
 
 
 void TestFörGodkäntItt() {
@@ -154,12 +154,12 @@ void TestFörGodkäntItt() {
 
 //Iteratorerna ska kunna göra:
 //-	*it, ++it, it++, (it+i), it[i], == och !=
-	/*												Should be fixed
+													//Should be fixed
 	TestIttPart();
 	TestIttPartc();
-	TestIttPartr();
-	TestIttPartcr();
-	*/
+	//TestIttPartr();
+	//TestIttPartcr();
+	
 
 
 //-	default constructor, copy constructor och tilldelning (=) 
@@ -168,11 +168,16 @@ void TestFörGodkäntItt() {
 	cStr=s.cbegin();
 	rStr=s.rbegin();
 	crStr=s.crbegin();
-	//*Str='a';										Should be fixed
+	*Str='a';
+	rStr++;
 //	*(cStr+1)='b';	//Sak ge kompileringsfel!
-	//*(rStr+2)='c';								Should be fixed
+	//*(rStr+2)='c';
 //	*(crStr+3)='d';	//Sak ge kompileringsfel!
-	//assert(s=="aoocar");							Should be fixed
+	//assert(s=="aoocar");
+
+}
+
+void test(){
 
 }
 
@@ -180,5 +185,6 @@ int main() {
 	_CrtSetDbgFlag ( _CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF );
 	TestFörGodkäntString();
 	TestFörGodkäntItt();
-	//cin.get();
+	test();
+	cin.get();
 }

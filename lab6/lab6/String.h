@@ -210,50 +210,56 @@ public:
 	////////////////////////////////////////////////////////
 	////////				Lab6					////////
 	////////////////////////////////////////////////////////
-	typedef int iterator;
-	typedef int const_iterator;
-	typedef int reverse_iterator;
-	typedef int const_reverse_iterator;
+	typedef char *iterator;
+	typedef const char *const_iterator;
+	typedef char *reverse_iterator;
+	typedef const char *const_reverse_iterator;
 
-	int begin(){
-		int i = 0;
-		return i;
+	iterator begin(){
+		return &string_ptr[0];
 	}
 
-	int end(){
-		int i = 0;
-		return i;
+	iterator end(){
+		return &string_ptr[size];
 	}
 
-	const int cbegin(){
-		int i = 0;
-		return i;
+	const_iterator cbegin(){
+		return &string_ptr[0];
 	}
 
-	const int cend(){
-		int i = 0;
-		return i;
+	const_iterator cend(){
+		return &string_ptr[size];
 	}
 
-	int rbegin(){
-		int i = 0;
-		return i;
+	reverse_iterator rbegin(){
+		return &string_ptr[size- 1 ];
 	}
 
-	int rend(){
-		int i = 0;
-		return i;
+	reverse_iterator rend(){
+		return &string_ptr[0];
 	}
 
-	const int crbegin(){
-		int i = 0;
-		return i;
+	const_reverse_iterator crbegin(){
+		return &string_ptr[size - 1];
 	}
 
-	const int crend(){
-		int i = 0;
-		return i;
+	const_reverse_iterator crend(){
+		return &string_ptr[0];
 	}
 
+	reverse_iterator operator+ (const int value){
+		return (string_ptr - value);
+		//return string_ptr - value;
+	}
+
+	reverse_iterator operator++(){
+		string_ptr -= 1;
+		return string_ptr;
+	}
+
+	reverse_iterator operator++(int){
+		String temp = *this;
+		string_ptr - 1;
+		return temp.string_ptr;
+	}
 };
-
