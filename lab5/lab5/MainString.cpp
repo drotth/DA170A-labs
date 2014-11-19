@@ -11,19 +11,17 @@
 #include <string>
 #include <iostream>
 #include <cassert>
-#include <utility>
+//#include <utility>
+
 using namespace std;
 
 #include "String.h"
 
-
 void TestFörGodkäntString() {
 	//-	String()
-	
 	String s0;	
 	assert (s0=="");
 	
-
 	//-	String(Sträng sträng)
 	String s1("foo"); assert(s1=="foo");
 	String s2(s1); 	assert(s2=="foo");
@@ -39,7 +37,6 @@ void TestFörGodkäntString() {
 	assert((s2=("foo"))=="foo");
 	assert((s2="bar")=="bar");
 	
-
 	//-	operator+=(Sträng sträng) som tolkas som konkatenering.
 	//foo, bar, bar
 	(s2+=s1)+=(s3+=s1);
@@ -51,7 +48,6 @@ void TestFörGodkäntString() {
 	s3+=s1;
 	assert(s3=="barfoo");
 	
-
 	//+= som inte får plats;
 	s3="bar"; s3.reserve(5);
 	s3+=s1;
@@ -73,9 +69,7 @@ void TestFörGodkäntString() {
 	sss=="foobar";
 	assert(sss=="foobar");
 	assert(s1+s2=="foobar" && s1=="foo");
-	//assert(s1+s2=="foobar" && s1=="foo");
 	
-
 	//-	operator== räcker med String==Sträng
 	//testas överallt!
 
@@ -90,7 +84,6 @@ void TestFörGodkäntString() {
 	} catch (std::out_of_range&) {};
 		assert(s2.at(2)='r');
 
-
 	//-	operator[](int i) som indexerar utan range check.
 	s2[-1]; s2[1000];
 	assert(s2[1]=='a');
@@ -104,8 +97,6 @@ void TestFörGodkäntString() {
 	s2.shrink_to_fit();
 	assert(s2.length()==s2.capacity());	
 
-
-	
 	s2.data();
 	if(s2.length()==s2.capacity()) {
 		//lagrar strängen med \0
@@ -124,7 +115,6 @@ void TestFörGodkäntString() {
 		s2.reserve(len+1); assert(cap!=s2.capacity()); //change
 	}
 	
-
 	//-	const char* c_str()
 	//tested above!
 

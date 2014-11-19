@@ -1,9 +1,8 @@
 #pragma once
 
-
 #include "RelOps.h"
-#include <iostream>
-#include <stdlib.h>
+//#include <iostream>
+//#include <stdlib.h>
 
 class String{
 public:
@@ -12,7 +11,7 @@ public:
 
 	String(){
 		string_ptr = new char[1];
-		string_ptr[0] = '\n';
+		string_ptr[0] = '\0';
 		size = 0;
 		cap = 0;
 	}
@@ -21,8 +20,8 @@ public:
 		size = rhs.size;
 		cap = rhs.cap;
 		string_ptr  = new char[size+1];
-		memcpy(string_ptr, rhs.string_ptr, (size+1));
-		string_ptr[size] = '\0';
+		memcpy(string_ptr, rhs.string_ptr, (size+1));	//Angående nedan, blir dte inte alltid +1 i storlek då?
+		string_ptr[size] = '\0';						// Följer inte detta med vid memcopy?
 	}
 
 	String(const char* cstr){
@@ -40,12 +39,12 @@ public:
 	bool operator==(const String &rhs){
 		bool result = false;
 		if (size == rhs.size){
-			result = true;
 			for (int i = 0; i < size; ++i){
 				if (string_ptr[i] != rhs.string_ptr[i]){
 					return false;
 				}
 			}
+			result = true;
 		}
 		return result;
 	}
@@ -91,8 +90,8 @@ public:
 	String& operator += (const String& rhs){
 		int temp_size = size + rhs.size;
 		char* temp = new char[temp_size + 1];
-		memcpy(temp, string_ptr, (size + 1));
-		memcpy((temp + size), rhs.string_ptr, temp_size + 1);
+		memcpy(temp, string_ptr, (size + 1));						// Varför +1? /0 ska väll inte vara med i mitten?
+		memcpy((temp + size), rhs.string_ptr, temp_size + 1);		// borde det inte vara rhs.size?
 		delete[] string_ptr;
 		string_ptr = temp;
 		size = temp_size;
@@ -137,7 +136,7 @@ public:
 	void reserve(int amnt){
 		if (amnt > cap){
 			char* temp = new char[amnt];
-			memcpy(temp, string_ptr, amnt);
+			memcpy(temp, string_ptr, amnt);			// borde det inte vara + 1?
 			delete[] string_ptr;
 			string_ptr = temp;
 			string_ptr[size] = '\0';
