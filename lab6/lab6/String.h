@@ -4,6 +4,9 @@
 #include "RelOps.h"
 #include <iostream>
 #include <stdlib.h>
+#include <string>
+
+using namespace std;
 
 class String{
 public:
@@ -20,16 +23,16 @@ public:
 	String(const String &rhs){
 		size = rhs.size;
 		cap = rhs.cap;
-		string_ptr  = new char[size+1];
-		memcpy(string_ptr, rhs.string_ptr, (size+1));
+		string_ptr = new char[size + 1];
+		memcpy(string_ptr, rhs.string_ptr, (size + 1));
 		string_ptr[size] = '\0';
 	}
 
 	String(const char* cstr){
 		size = strlen(cstr);
 		cap = size;
-		string_ptr = new char[size+1];
-		memcpy(string_ptr, cstr, (size+1));
+		string_ptr = new char[size + 1];
+		memcpy(string_ptr, cstr, (size + 1));
 		string_ptr[size] = '\0';
 	}
 
@@ -56,7 +59,7 @@ public:
 			cap = rhs.cap;
 			char* temp = new char[size + 1];
 			delete[] string_ptr;
-			memcpy(temp, rhs.string_ptr, (size+1));
+			memcpy(temp, rhs.string_ptr, (size + 1));
 			string_ptr = temp;
 			string_ptr[size] = '\0';
 		}
@@ -179,8 +182,8 @@ public:
 
 	void shrink_to_fit(){
 		if (size < cap){
-			char* temp = new char[size+1];
-			memcpy(temp, string_ptr, (size+1));
+			char* temp = new char[size + 1];
+			memcpy(temp, string_ptr, (size + 1));
 			delete[] string_ptr;
 			string_ptr = temp;
 			string_ptr[size] = '\0';
@@ -197,4 +200,60 @@ public:
 		cout << temp_string << endl;
 		return cout;
 	}
+
+
+
+
+
+
+
+	////////////////////////////////////////////////////////
+	////////				Lab6					////////
+	////////////////////////////////////////////////////////
+	typedef int iterator;
+	typedef int const_iterator;
+	typedef int reverse_iterator;
+	typedef int const_reverse_iterator;
+
+	int begin(){
+		int i = 0;
+		return i;
+	}
+
+	int end(){
+		int i = 0;
+		return i;
+	}
+
+	const int cbegin(){
+		int i = 0;
+		return i;
+	}
+
+	const int cend(){
+		int i = 0;
+		return i;
+	}
+
+	int rbegin(){
+		int i = 0;
+		return i;
+	}
+
+	int rend(){
+		int i = 0;
+		return i;
+	}
+
+	const int crbegin(){
+		int i = 0;
+		return i;
+	}
+
+	const int crend(){
+		int i = 0;
+		return i;
+	}
+
 };
+
