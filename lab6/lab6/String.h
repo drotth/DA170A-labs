@@ -236,7 +236,7 @@ public:
 	}
 
 	reverse_iterator rend(){
-		return &string_ptr[0];
+		return &string_ptr[-1];
 	}
 
 	const_reverse_iterator crbegin(){
@@ -244,8 +244,11 @@ public:
 	}
 
 	const_reverse_iterator crend(){
-		return &string_ptr[0];
+		return &string_ptr[-1];
 	}
+
+
+
 
 	reverse_iterator operator+ (const int value){
 		return (string_ptr - value);
@@ -253,13 +256,14 @@ public:
 	}
 
 	reverse_iterator operator++(){
-		string_ptr -= 1;
-		return string_ptr;
+		return (string_ptr-1);
 	}
 
 	reverse_iterator operator++(int){
-		String temp = *this;
-		string_ptr - 1;
+		String temp = string_ptr;
+		*(string_ptr-1);
 		return temp.string_ptr;
 	}
+
+
 };

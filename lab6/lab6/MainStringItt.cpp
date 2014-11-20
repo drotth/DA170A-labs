@@ -134,13 +134,33 @@ void TestFörGodkäntString() {
 	assert(it[2]=='r');									\
 }
 
-												//Should be fixed
 MACROTestIttPart(,);	//, ger tomt argument
 MACROTestIttPart(c);
-//MACROTestIttPart(r);
+//MACROTestIttPart(r);									//Fungerar ej
 //MACROTestIttPart(cr);
 
 
+
+#define MACROTestTempIttPart(CR)							\
+	/*	*it, ++it, it++, (it+i), it[i], == och !=	*/	\
+	void TestTempIttPart##CR() {							\
+	String s1("foobar");								\
+	for (auto i=s1.CR##begin(); i!=s1.CR##end(); i--)	\
+		cout << *i;										\
+	cout << endl;										\
+	if (#CR=="r" || #CR=="cr")							\
+		s1="raboof";									\
+	auto it = s1.CR##begin();							\
+	assert(*it=='f');									\
+	assert(*(it--)=='f' && *it == 'o');					\
+	--it;												\
+	assert(*--it=='b');									\
+	assert(*(it-1)=='a');								\
+	/*assert(it[2]=='r');*/			/*Fungerar inte att kolla [2]*/						\
+}
+
+MACROTestTempIttPart(r);
+MACROTestTempIttPart(cr);
 
 void TestFörGodkäntItt() {
 
@@ -154,27 +174,26 @@ void TestFörGodkäntItt() {
 
 //Iteratorerna ska kunna göra:
 //-	*it, ++it, it++, (it+i), it[i], == och !=
-													//Should be fixed
 	TestIttPart();
 	TestIttPartc();
-	//TestIttPartr();
+	//TestIttPartr();									//Fungerar ej
 	//TestIttPartcr();
 	
-
+	TestTempIttPartr();									//Tillfällig
+	TestTempIttPartcr();
 
 //-	default constructor, copy constructor och tilldelning (=) 
 	String s("foobar");
 	Str=s.begin();
 	cStr=s.cbegin();
-	rStr=s.rbegin();
+	rStr = s.rbegin();
 	crStr=s.crbegin();
 	*Str='a';
-	rStr++;
 //	*(cStr+1)='b';	//Sak ge kompileringsfel!
-	//*(rStr+2)='c';
+	//*(rStr+2)='c';									//Fungerar ej
+	*(rStr - 2) = 'c';									//Tillfällig
 //	*(crStr+3)='d';	//Sak ge kompileringsfel!
-	//assert(s=="aoocar");
-
+	assert(s=="aoocar");								//Fungerar ej
 }
 
 void test(){
