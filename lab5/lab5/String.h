@@ -129,16 +129,16 @@ public:
 	}
 
 	String operator+(String const rhs) const{
-		int temp_size = size + rhs.size;
-		char* temp = new char[temp_size + 1];
+		//int temp_size = size + rhs.size;
+		//char* temp = new char[temp_size + 1];
 
-		memcpy(temp, string_ptr, sizeof(*string_ptr) * (size +1));
-		memcpy((temp + size), rhs.string_ptr, sizeof(*string_ptr) * (temp_size +1));
+		//memcpy(temp, string_ptr, sizeof(*string_ptr) * (size +1));
+		//memcpy((temp + size), rhs.string_ptr, sizeof(*string_ptr) * (temp_size +1));
 
-		String s = String(temp);
-		delete[] temp;
+		String s = String(*this);
+		//delete[] temp;
 
-		return s;
+		return s+=rhs;
 	}
 
 	String& operator+(char* cstr){
