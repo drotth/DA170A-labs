@@ -1,5 +1,3 @@
-// http://www.codeproject.com/Articles/15351/Implementing-a-simple-smart-pointer-in-c
-
 #pragma once
 #define _CRTDBG_MAP_ALLOC
 #include <stdlib.h>
@@ -53,12 +51,9 @@ public:
 	}
 
 	SharedPtr& operator= (const SharedPtr& sp){
-		// Avoid self assignment
+
 		if (this != &sp){
-			
-			// If this SharedPtr is the only reference to a 
-			// specific object, then delete that and the previous
-			// reference counter
+
 			if (references->releaseRef() == 0)
 			{
 				delete pData;
