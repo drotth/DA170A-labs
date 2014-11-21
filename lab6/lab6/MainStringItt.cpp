@@ -127,19 +127,17 @@ void TestFörGodkäntString() {
 		s1="raboof";									\
 	auto it = s1.CR##begin();							\
 	assert(*it=='f');									\
-	assert(*(it++)=='f' && *it == 'o');					\
+	assert(*(it++)=='f' && *it == 'o');				\
 	++it;												\
 	assert(*++it=='b');									\
 	assert(*(it+1)=='a');								\
 	assert(it[2]=='r');									\
 }
 
-/*													Should be fixed
 MACROTestIttPart(,);	//, ger tomt argument
 MACROTestIttPart(c);
-MACROTestIttPart(r);
+MACROTestIttPart(r);									
 MACROTestIttPart(cr);
-*/
 
 
 void TestFörGodkäntItt() {
@@ -154,25 +152,27 @@ void TestFörGodkäntItt() {
 
 //Iteratorerna ska kunna göra:
 //-	*it, ++it, it++, (it+i), it[i], == och !=
-	/*												Should be fixed
 	TestIttPart();
 	TestIttPartc();
-	TestIttPartr();
+	TestIttPartr();	
 	TestIttPartcr();
-	*/
-
+	
 
 //-	default constructor, copy constructor och tilldelning (=) 
 	String s("foobar");
 	Str=s.begin();
 	cStr=s.cbegin();
-	rStr=s.rbegin();
-	crStr=s.crbegin();
-	//*Str='a';										Should be fixed
+	rStr = s.rbegin();
+	crStr = s.crbegin();
+	*(Str+0)='a';
 //	*(cStr+1)='b';	//Sak ge kompileringsfel!
-	//*(rStr+2)='c';								Should be fixed
+	*(rStr+2)='c';	
+
 //	*(crStr+3)='d';	//Sak ge kompileringsfel!
-	//assert(s=="aoocar");							Should be fixed
+	assert(s=="aoocar");
+}
+
+void test(){
 
 }
 
@@ -180,5 +180,6 @@ int main() {
 	_CrtSetDbgFlag ( _CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF );
 	TestFörGodkäntString();
 	TestFörGodkäntItt();
-	//cin.get();
+	test();
+	cin.get();
 }
