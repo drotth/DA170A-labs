@@ -127,7 +127,7 @@ void TestFörGodkäntString() {
 		s1="raboof";									\
 	auto it = s1.CR##begin();							\
 	assert(*it=='f');									\
-	assert(*(it++)=='f' && *it == 'o');					\
+	assert(*(it++)=='f' && *it == 'o');				\
 	++it;												\
 	assert(*++it=='b');									\
 	assert(*(it+1)=='a');								\
@@ -136,31 +136,9 @@ void TestFörGodkäntString() {
 
 MACROTestIttPart(,);	//, ger tomt argument
 MACROTestIttPart(c);
-//MACROTestIttPart(r);									//Fungerar ej
-//MACROTestIttPart(cr);
+MACROTestIttPart(r);									
+MACROTestIttPart(cr);
 
-
-
-#define MACROTestTempIttPart(CR)							\
-	/*	*it, ++it, it++, (it+i), it[i], == och !=	*/	\
-	void TestTempIttPart##CR() {							\
-	String s1("foobar");								\
-	for (auto i=s1.CR##begin(); i!=s1.CR##end(); i--)	\
-		cout << *i;										\
-	cout << endl;										\
-	if (#CR=="r" || #CR=="cr")							\
-		s1="raboof";									\
-	auto it = s1.CR##begin();							\
-	assert(*it=='f');									\
-	assert(*(it--)=='f' && *it == 'o');					\
-	--it;												\
-	assert(*--it=='b');									\
-	assert(*(it-1)=='a');								\
-	/*assert(it[2]=='r');*/			/*Fungerar inte att kolla [2]*/						\
-}
-
-MACROTestTempIttPart(r);
-MACROTestTempIttPart(cr);
 
 void TestFörGodkäntItt() {
 
@@ -176,24 +154,22 @@ void TestFörGodkäntItt() {
 //-	*it, ++it, it++, (it+i), it[i], == och !=
 	TestIttPart();
 	TestIttPartc();
-	//TestIttPartr();									//Fungerar ej
-	//TestIttPartcr();
+	TestIttPartr();	
+	TestIttPartcr();
 	
-	TestTempIttPartr();									//Tillfällig
-	TestTempIttPartcr();
 
 //-	default constructor, copy constructor och tilldelning (=) 
 	String s("foobar");
 	Str=s.begin();
 	cStr=s.cbegin();
 	rStr = s.rbegin();
-	crStr=s.crbegin();
-	*Str='a';
+	crStr = s.crbegin();
+	*(Str+0)='a';
 //	*(cStr+1)='b';	//Sak ge kompileringsfel!
-	//*(rStr+2)='c';									//Fungerar ej
-	*(rStr - 2) = 'c';									//Tillfällig
+	*(rStr+2)='c';	
+
 //	*(crStr+3)='d';	//Sak ge kompileringsfel!
-	assert(s=="aoocar");								//Fungerar ej
+	assert(s=="aoocar");
 }
 
 void test(){

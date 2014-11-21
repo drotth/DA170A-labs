@@ -1,7 +1,5 @@
 #pragma once
 
-
-#include "RelOps.h"
 #include <iostream>
 #include <stdlib.h>
 
@@ -12,7 +10,7 @@ public:
 
 	String(){
 		string_ptr = new char[1];
-		string_ptr[0] = '\n';
+		string_ptr[0] = '\0';
 		size = 0;
 		cap = 0;
 	}
@@ -21,7 +19,7 @@ public:
 		size = rhs.size;
 		cap = rhs.cap;
 		string_ptr  = new char[size+1];
-		memcpy(string_ptr, rhs.string_ptr, (size+1));
+		memcpy(string_ptr, rhs.string_ptr, sizeof(*string_ptr)*(size+1));
 		string_ptr[size] = '\0';
 	}
 
@@ -29,7 +27,7 @@ public:
 		size = strlen(cstr);
 		cap = size;
 		string_ptr = new char[size+1];
-		memcpy(string_ptr, cstr, (size+1));
+		memcpy(string_ptr, cstr, sizeof(*string_ptr)*(size+1));
 		string_ptr[size] = '\0';
 	}
 
@@ -56,7 +54,7 @@ public:
 			cap = rhs.cap;
 			char* temp = new char[size + 1];
 			delete[] string_ptr;
-			memcpy(temp, rhs.string_ptr, (size+1));
+			memcpy(temp, rhs.string_ptr, sizeof(*string_ptr)*(size + 1));
 			string_ptr = temp;
 			string_ptr[size] = '\0';
 		}
@@ -69,7 +67,7 @@ public:
 			cap = size;
 			char* temp = new char[size + 1];
 			delete[] string_ptr;
-			memcpy(temp, cstr, (size + 1));
+			memcpy(temp, cstr, sizeof(*string_ptr)*(size + 1));
 			string_ptr = temp;
 			string_ptr[size] = '\0';
 		}
@@ -91,8 +89,8 @@ public:
 	String& operator += (const String& rhs){
 		int temp_size = size + rhs.size;
 		char* temp = new char[temp_size + 1];
-		memcpy(temp, string_ptr, (size + 1));
-		memcpy((temp + size), rhs.string_ptr, temp_size + 1);
+		memcpy(temp, string_ptr, sizeof(*string_ptr)*(size + 1));
+		memcpy((temp + size), rhs.string_ptr, sizeof(*string_ptr)*(temp_size + 1));
 		delete[] string_ptr;
 		string_ptr = temp;
 		size = temp_size;
@@ -104,8 +102,8 @@ public:
 	String& operator+=(char* cstr){
 		int temp_size = size + strlen(cstr);
 		char* temp = new char[temp_size + 1];
-		memcpy(temp, string_ptr, (size + 1));
-		memcpy((temp + size), cstr, (temp_size + 1));
+		memcpy(temp, string_ptr, sizeof(*string_ptr)*(size + 1));
+		memcpy((temp + size), cstr, sizeof(*string_ptr)*(temp_size + 1));
 		delete[] string_ptr;
 		string_ptr = temp;
 		size = temp_size;
@@ -117,8 +115,8 @@ public:
 	String operator+(String const rhs) const{
 		int temp_size = size + rhs.size;
 		char* temp = new char[temp_size + 1];
-		memcpy(temp, string_ptr, (size + 1));
-		memcpy((temp + size), rhs.string_ptr, (temp_size + 1));
+		memcpy(temp, string_ptr, sizeof(*string_ptr)*(size + 1));
+		memcpy((temp + size), rhs.string_ptr, sizeof(*string_ptr)*(temp_size + 1));
 		String s = String(temp);
 		delete[] temp;
 		return s;
@@ -127,8 +125,8 @@ public:
 	String& operator+(char* cstr){
 		int temp_size = size + strlen(cstr);
 		char* temp = new char[temp_size + 1];
-		memcpy(temp, string_ptr, (size + 1));
-		memcpy((temp + size), cstr, (temp_size + 1));
+		memcpy(temp, string_ptr, sizeof(*string_ptr)*(size + 1));
+		memcpy((temp + size), cstr, sizeof(*string_ptr)*(temp_size + 1));
 		String s = String(temp);
 		delete[] temp;
 		return s;
@@ -160,7 +158,7 @@ public:
 
 	void push_back(const char c){
 		char* temp = new char[size + 2];
-		memcpy(temp, string_ptr, (size + 1));
+		memcpy(temp, string_ptr, sizeof(*string_ptr)*(size + 1));
 		temp[size] = c;
 		delete[] string_ptr;
 		string_ptr = temp;
@@ -180,7 +178,7 @@ public:
 	void shrink_to_fit(){
 		if (size < cap){
 			char* temp = new char[size+1];
-			memcpy(temp, string_ptr, (size+1));
+			memcpy(temp, string_ptr, sizeof(*string_ptr)*(size + 1));
 			delete[] string_ptr;
 			string_ptr = temp;
 			string_ptr[size] = '\0';
