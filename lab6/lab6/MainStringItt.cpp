@@ -116,6 +116,9 @@ void TestFörGodkäntString() {
 
 }
 
+
+//Här börjar LAB6 - test tyyyyyp :)
+
 #define MACROTestIttPart(CR)							\
 	/*	*it, ++it, it++, (it+i), it[i], == och !=	*/	\
 	void TestIttPart##CR() {							\
@@ -172,14 +175,9 @@ void TestFörGodkäntItt() {
 	assert(s=="aoocar");
 }
 
-void test(){
-
-}
-
 int main() {
 	_CrtSetDbgFlag ( _CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF );
 	TestFörGodkäntString();
 	TestFörGodkäntItt();
-	test();
 	cin.get();
 }

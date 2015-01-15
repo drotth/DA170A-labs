@@ -52,8 +52,8 @@ public:
 		return pointer[-i];
 	}
 
-	char operator=(const char ch){
-		*pointer = ch;
-		return *pointer;
+	MyRevIt operator=(char* ch){
+		pointer = ch;
+		return *this;
 	}
 };

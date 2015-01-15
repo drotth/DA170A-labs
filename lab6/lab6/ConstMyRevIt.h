@@ -38,6 +38,11 @@ public:
 		return temp;
 	}
 
+	ConstMyRevIt operator=(char* ch){
+		pointer = ch;
+		return *this;
+	}
+
 	bool operator==(const ConstMyRevIt &rhs){
 		return pointer == rhs.pointer;
 	}
@@ -49,4 +54,6 @@ public:
 	const char& operator[](int i){
 		return pointer[-i];
 	}
+
+	
 };
